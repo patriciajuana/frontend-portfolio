@@ -1,32 +1,91 @@
 <script setup lang="ts">
-import { PropType } from 'vue'
+import { PropType, ref } from 'vue'
+
+interface HeaderNavItem {
+  text: string
+  route?: string
+  href?: string
+  subitems?: HeaderNavItem[]
+}
 
 const props = defineProps({
-  navItems: {
-    type: Array as PropType<
-      {
-        link: string
-        text: string
-        subitems?: { link: string; text: string }[]
-      }[]
-    >,
+  headerNavItems: {
+    type: Array as PropType<HeaderNavItem[]>,
   },
 })
+
+const navItemHovered = ref()
+const setNavItemHovered = (id: string) => {
+  navItemHovered.value = id
+}
+const isNavItemActive = (navItem: HeaderNavItem) => {
+  return navItemHovered.value === navItem.route || navItem.href
+}
 </script>
 
 <template>
-  <header>
+  <header class="header py-4">
     <div class="container">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items-center">
         <div class="header__logo">
           <img src="@/assets/images/logo.svg" alt="Patrick - Creative Frontend Developer" />
         </div>
         <div class="header__nav">
           <nav>
             <!-- Main Navigation Items -->
-            <ul class="list-unstyled d-flex gap-4">
-              <li v-for="(item, i) in navItems" :key="i">
-                <RouterLink :to="item.link">{{ item.text }}</RouterLink>
+            <ul class="header__nav-list list-unstyled mb-0 d-flex">
+              <li
+                v-for="(item, i) in headerNavItems"
+                :key="i"
+                class="header__nav-list-item"
+                @mouseleave="setNavItemHovered('')"
+              >
+                <RouterLink
+                  v-if="item.route"
+                  :to="item.route"
+                  class="header__nav-link d-flex align-items-center gap-1 p-2"
+                  :class="{
+                    'is-active': isNavItemActive(item),
+                  }"
+                  @mouseenter="setNavItemHovered(item.route || item.href || '')"
+                >
+                  {{ item.text }}
+                  <i
+                    v-if="item.subitems?.length && !isNavItemActive(item)"
+                    class="fa fa-plus-square"
+                  ></i>
+                  <i
+                    v-if="item.subitems?.length && isNavItemActive(item)"
+                    class="far fa-minus-square"
+                  ></i>
+                </RouterLink>
+                <div
+                  v-if="item.subitems?.length"
+                  class="header__submenu"
+                  :class="{
+                    'is-active': isNavItemActive(item),
+                  }"
+                >
+                  <ul class="header__submenu-list list-unstyled mb-0 d-flex flex-column gap-1">
+                    <li v-for="(subitem, j) in item.subitems" :key="j">
+                      <a
+                        v-if="subitem.href"
+                        class="header__subitem-nav-link"
+                        :href="subitem.href"
+                        target="_blank"
+                      >
+                        {{ subitem.text }}
+                      </a>
+                      <RouterLink
+                        v-if="subitem.route"
+                        :to="subitem.route"
+                        class="header__subitem-nav-link"
+                      >
+                        {{ subitem.text }}
+                      </RouterLink>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </ul>
           </nav>
@@ -35,3 +94,78 @@ const props = defineProps({
     </div>
   </header>
 </template>
+
+<style scoped lang="scss">
+@use '@/styles/fonts' as *;
+@use '@/styles/ease' as *;
+@use '@/styles/vendor/bootstrap/variables' as *;
+
+.header {
+  //border: 1px solid red;
+}
+
+.header__nav-link,
+.header__subitem-nav-link {
+  font-family: $font-broadacre-light;
+  font-size: 14px;
+  text-decoration: none;
+  color: $black;
+}
+.header__subitem-nav-link {
+  font-size: 12px;
+  color: $white;
+}
+
+.header__nav-link.is-active {
+  color: $primary;
+}
+
+.header__nav-list {
+}
+
+.header__nav-list-item {
+  position: relative;
+}
+
+.header__submenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  padding: 20px 15px;
+  min-width: 200px;
+  max-width: 300px;
+  z-index: 0;
+  pointer-events: none;
+
+  &:before {
+    //bg
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $primary;
+    transform-origin: left;
+    transform: scaleX(10) translateX(50%);
+    transition: transform 0.25s $ease-expo-in;
+    z-index: -1;
+  }
+}
+.header__submenu-list {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.header__submenu.is-active {
+  pointer-events: auto;
+
+  .header__submenu-list {
+    opacity: 1;
+  }
+
+  &:before {
+    transform: scaleX(10) translateX(0);
+    transition: transform 0.5s $ease-expo-out;
+  }
+}
+</style>

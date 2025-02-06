@@ -1,25 +1,45 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Header from './components/Header.vue'
 
-const navItems = [
+const headerNavItems = [
   {
-    link: '#',
+    route: '/web-apps',
     text: 'Web Apps',
     subitems: [
       {
-        link: '#',
-        text: 'test',
+        route: '/kyc',
+        text: 'KYC Web App',
       },
     ],
   },
   {
-    link: '#',
+    route: '/wordpress',
     text: 'WordPress',
+  },
+  {
+    route: '/design',
+    text: 'Design',
+  },
+  {
+    route: '/fun-stuff',
+    text: 'Fun Stuff',
+  },
+  {
+    route: '/contact',
+    text: 'Contact',
     subitems: [
       {
-        link: '#',
-        text: 'test',
+        href: 'mailto:patriciajuana@gmail.com',
+        text: 'patriciajuana@gmail.com',
+      },
+      {
+        href: 'mailto:patriciajuana@gmail.com',
+        text: 'patriciajuana@gmail.com',
+      },
+      {
+        href: 'mailto:patriciajuana@gmail.com',
+        text: 'patriciajuana@gmail.com',
       },
     ],
   },
@@ -27,8 +47,7 @@ const navItems = [
 </script>
 
 <template>
-  <Header :nav-items="navItems"></Header>
-
+  <Header :header-nav-items="headerNavItems"></Header>
   <RouterView />
 </template>
 
