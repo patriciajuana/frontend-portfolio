@@ -1,0 +1,41 @@
+// Color system
+
+// scss-docs-start gray-color-variables
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+// scss-docs-end gray-color-variables
+
+$primary: red !default;
+
+// Links
+//
+// Style anchor elements.
+
+$link-color: $black !default;
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+// scss-docs-start spacer-variables-maps
+$spacer: 10px !default;
+$spacers: (
+  0: 0,
+  1: $spacer,
+  2: $spacer * 2,
+  3: $spacer * 3,
+  4: $spacer * 4,
+  5: $spacer * 5,
+) !default;
+// scss-docs-end spacer-variables-maps
