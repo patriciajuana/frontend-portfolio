@@ -23,6 +23,7 @@ export interface PortfolioItemContent {
     route: string
     text: string
   }[]
+  isFeatured?: boolean
 }
 
 const props = defineProps<{
@@ -44,7 +45,7 @@ const resolvedImagePath = computed(() => {
 </script>
 
 <template>
-  <div class="portfolio-item pt-8 pb-4" :class="content.modifier">
+  <div class="portfolio-item pt-12 pb-4" :class="content.modifier">
     <div class="container">
       <div class="portfolio-item__layout row">
         <div class="portfolio-item__body col-6">
@@ -74,14 +75,14 @@ const resolvedImagePath = computed(() => {
                   <dt class="col-3">{{ detail.heading }}</dt>
                   <dd class="col" v-html="detail.content"></dd>
                 </dl>
-                <div class="d-flex gap-1">
+                <div class="portfolio-item__cta d-flex gap-1">
                   <div v-for="(ctaItem, i) in content.cta" :key="i">
                     <RouterLink
                       :to="ctaItem.route"
                       class="btn"
                       :class="ctaItem.buttonModifier || 'btn-primary'"
-                      >{{ ctaItem.text }}</RouterLink
-                    >
+                      v-html="ctaItem.text"
+                    ></RouterLink>
                   </div>
                 </div>
               </div>
@@ -92,6 +93,7 @@ const resolvedImagePath = computed(() => {
           <div class="portfolio-item__image">
             <img class="img-fluid" :src="resolvedImagePath" :alt="content.imageAlt" />
             <p class="portfolio-item__tags">{{ formattedTags }}</p>
+            <p v-if="content.isFeatured" class="portfolio-item__featured">Featured Portfolio</p>
           </div>
         </div>
       </div>
@@ -164,6 +166,35 @@ const resolvedImagePath = computed(() => {
   list-style-position: inside;
   padding-left: 0;
 }
+.portfolio-item__cta .btn ::v-deep(i) {
+  font-size: 12px;
+  margin-left: 8px;
+}
+.portfolio-item__featured {
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  color: $gray-600;
+  text-transform: uppercase;
+  position: absolute;
+  top: calc(map-get($spacers, 5) * -1);
+  left: 0;
+  width: 100%;
+  text-align: right;
+  padding-right: map-get($spacers, 10);
+
+  &:after {
+    //framing line
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: $gray-400;
+    position: absolute;
+    top: 50%;
+    left: calc(100% - map-get($spacers, 8));
+    transform-origin: left;
+    transform: scaleX(10) translateY(-50%);
+  }
+}
 
 //Modifiers: --reverse
 .portfolio-item--reverse {
@@ -185,6 +216,19 @@ const resolvedImagePath = computed(() => {
       border-right: 0;
     }
   }
+
+  .portfolio-item__featured {
+    text-align: left;
+    padding-right: 0;
+    padding-left: map-get($spacers, 10);
+
+    &:after {
+      //framing line
+      left: unset;
+      right: calc(100% - map-get($spacers, 8));
+      transform-origin: right;
+    }
+  }
 }
 
 //Modifiers: --dark
@@ -192,7 +236,7 @@ const resolvedImagePath = computed(() => {
   background-color: #2d2d2d;
 
   h2,
-  p:not(.portfolio-item__subheading):not(.portfolio-item__tags),
+  p:not(.portfolio-item__subheading):not(.portfolio-item__tags):not(.portfolio-item__featured),
   dt,
   dd {
     color: $white;
@@ -211,6 +255,15 @@ const resolvedImagePath = computed(() => {
     &:after {
       //framing borders
       border-color: $gray-700;
+    }
+  }
+
+  .portfolio-item__featured {
+    color: $gray-500;
+
+    &:after {
+      //framing line
+      background-color: $gray-700;
     }
   }
 }

@@ -5,25 +5,41 @@ const portfolioItems: PortfolioItemContent[] = [
     modifier: 'portfolio-item--reverse portfolio-item--dark',
     heading: 'KYC Web App',
     subheading: 'Identity Verification',
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. At nisi suscipit, quaerat,
-            reiciendis optio illum consequuntur in est aliquam commodi recusandae, quibusdam itaque.
-            Veritatis labore maxime expedita iste beatae aut.`,
+    description: `Designed and developed a secure identity verification platform that performs liveness detection, matches selfies with ID documents, and verifies age for compliance and fraud prevention.`,
     details: [
       {
         heading: 'Client:',
-        content: 'Humber IGS (Graphics Design for Print and Web)',
+        content: 'Progeny',
       },
       {
-        heading: 'Deliverables:',
+        heading: 'Frontend Tech Stack:',
         content: `  <ul>
-                      <li>Branding and Merch</li>
-                      <li>Vinyl album cover</li>
-                      <li>Press Kit</li>
-                      <li>Website</li>
+                      <li>Vue3</li>
+                      <li>Pinia</li>
+                      <li>Vuetify</li>
+                      <li>Axios</li>
+                    </ul>`,
+      },
+      {
+        heading: 'Middleware Tech Stack:',
+        content: `  <ul>
+                      <li>NodeJS</li>
+                      <li>Express</li>
+                      <li>MySQL</li>
+                      <li>Sharp</li>
+                    </ul>`,
+      },
+      {
+        heading: 'Middleware Tech Stack:',
+        content: `  <ul>
+                      <li>NodeJS</li>
+                      <li>Express</li>
+                      <li>MySQL</li>
+                      <li>Sharp</li>
                     </ul>`,
       },
     ],
-    tags: ['test', 'test2'],
+    tags: ['developer', 'designer'],
     image: 'portfolio-preview-kyc.jpg',
     imageAlt: '',
     cta: [
@@ -34,33 +50,34 @@ const portfolioItems: PortfolioItemContent[] = [
       },
       {
         route: '/',
-        text: 'Show more web apps',
+        text: 'More Web App Portfolios <i class="fas fa-long-arrow-alt-right"></i>',
       },
     ],
+    isFeatured: true,
   },
   {
     modifier: '',
-    heading: 'KYC Web App',
-    subheading: 'Identity Verification',
-    description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. At nisi suscipit, quaerat,
-            reiciendis optio illum consequuntur in est aliquam commodi recusandae, quibusdam itaque.
-            Veritatis labore maxime expedita iste beatae aut.`,
+    heading: 'Blackhawk Tire Website',
+    subheading: 'Passenger Tires',
+    description: `Designed and developed a refreshed and modernized WordPress website for Blackhawk Tire, designed to enhance user experience and brand identity. This redesign improves navigation, performance, and responsiveness while maintaining a sleek, professional look.`,
+    link: {
+      href: 'https://blackhawktirecanada.ca/en-ca/plt/',
+      text: 'Visit the Website',
+      target: '_blank',
+    },
     details: [
       {
         heading: 'Client:',
-        content: 'Humber IGS (Graphics Design for Print and Web)',
+        content: 'Blackhawk Tire (via Disruptive Art Studio)',
       },
       {
-        heading: 'Deliverables:',
+        heading: 'Tech Stack:',
         content: `  <ul>
-                      <li>Branding and Merch</li>
-                      <li>Vinyl album cover</li>
-                      <li>Press Kit</li>
-                      <li>Website</li>
+                      <li>Wordpress</li>                      
                     </ul>`,
       },
     ],
-    tags: ['test', 'test2'],
+    tags: ['developer', 'designer'],
     image: 'portfolio-preview-bh.jpg',
     imageAlt: '',
     cta: [
@@ -71,9 +88,10 @@ const portfolioItems: PortfolioItemContent[] = [
       },
       {
         route: '/',
-        text: 'Show more web apps',
+        text: 'More WordPress Portfolios <i class="fas fa-long-arrow-alt-right"></i>',
       },
     ],
+    isFeatured: true,
   },
 ]
 

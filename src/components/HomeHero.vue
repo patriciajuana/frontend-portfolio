@@ -44,7 +44,7 @@
               <p class="mt-5">Sincerely,<br />Patrick John Pacana</p>
             </div>
             <div class="home-hero__catch-text">
-              <p>Please</p>
+              <p>Please Please Please Please</p>
             </div>
           </div>
         </div>
@@ -92,10 +92,10 @@
 
 @keyframes catch-text-scroll {
   from {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-780px);
   }
 }
 .home-hero__catch-text p {
@@ -105,7 +105,9 @@
   text-transform: uppercase;
   line-height: 1;
   mix-blend-mode: multiply;
+  white-space: nowrap;
   animation: catch-text-scroll 15s linear infinite;
+  //animation: catch-text-scroll 1s linear infinite;
 }
 .home-hero__image-column {
   position: relative;
