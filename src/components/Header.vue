@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue'
 
-interface HeaderNavItem {
+export interface HeaderNavItem {
   text: string
   route?: string
   href?: string
@@ -28,7 +28,9 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
         <div class="header__logo">
-          <img src="@/assets/images/logo.svg" alt="Patrick - Creative Frontend Developer" />
+          <a href="/">
+            <img src="@/assets/images/logo.svg" alt="Patrick - Creative Frontend Developer" />
+          </a>
         </div>
         <div class="header__nav">
           <nav>
@@ -59,6 +61,7 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
                     class="far fa-minus-square"
                   ></i>
                 </RouterLink>
+                <!-- Sub Navigation Items -->
                 <div
                   v-if="item.subitems?.length"
                   class="header__submenu"
@@ -73,16 +76,14 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
                         class="header__subitem-nav-link"
                         :href="subitem.href"
                         target="_blank"
-                      >
-                        {{ subitem.text }}
-                      </a>
+                        v-html="subitem.text"
+                      ></a>
                       <RouterLink
                         v-if="subitem.route"
                         :to="subitem.route"
                         class="header__subitem-nav-link"
-                      >
-                        {{ subitem.text }}
-                      </RouterLink>
+                        v-html="subitem.text"
+                      ></RouterLink>
                     </li>
                   </ul>
                 </div>
@@ -147,7 +148,7 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
     height: 100%;
     background-color: $primary;
     transform-origin: left;
-    transform: scaleX(10) translateX(50%);
+    transform: scaleX(10) translateX(100%);
     transition: transform 0.25s $ease-expo-in;
     z-index: -1;
   }
