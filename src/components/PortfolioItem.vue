@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 export interface PortfolioItemContent {
-  modifier?: ''
+  modifier?: string
   route: string
   heading: string
   subheading: string
@@ -40,9 +40,9 @@ const resolvedImagePath = computed(() => {
 </script>
 
 <template>
-  <div class="portfolio-item" :class="content.modifier">
+  <div class="portfolio-item pt-8 pb-4" :class="content.modifier">
     <div class="container">
-      <div class="row">
+      <div class="portfolio-item__layout row">
         <div class="portfolio-item__body col-6">
           <h2>{{ content.heading }}</h2>
           <p class="portfolio-item__subheading mb-3">{{ content.subheading }}</p>
@@ -65,7 +65,7 @@ const resolvedImagePath = computed(() => {
               <p class="portfolio-item__count">
                 <span>/{{ formattedCount }}</span>
               </p>
-              <div class="mt-3">
+              <div class="portfolio-item__details mt-3">
                 <dl v-for="(detail, i) in content.details" :key="i" class="row">
                   <dt class="col-3">{{ detail.heading }}</dt>
                   <dd class="col" v-html="detail.content"></dd>
@@ -146,5 +146,63 @@ const resolvedImagePath = computed(() => {
 }
 .portfolio-item__link i {
   font-size: 12px;
+}
+.portfolio-item__details dl > dt {
+  font-weight: $font-weight-semibold;
+}
+.portfolio-item__details dl > dd ::v-deep(ul) {
+  list-style-type: disc;
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+//Modifiers: --reverse
+.portfolio-item--reverse {
+  .portfolio-item__layout.row {
+    flex-direction: row-reverse;
+  }
+
+  .portfolio-item__tags {
+    left: 0;
+    bottom: 0;
+    padding-right: 0;
+    padding-left: map-get($spacers, 5);
+
+    &:after {
+      //framing borders
+      top: 0;
+      left: 0;
+      border-left: 1px solid $gray-200;
+      border-right: 0;
+    }
+  }
+}
+
+//Modifiers: --dark
+.portfolio-item--dark {
+  background-color: #2d2d2d;
+
+  h2,
+  p:not(.portfolio-item__subheading):not(.portfolio-item__tags),
+  dt,
+  dd {
+    color: $white;
+  }
+
+  .portfolio-item__count {
+    border-color: $gray-700;
+  }
+  .portfolio-item__count > span {
+    border-color: $gray-100;
+  }
+
+  .portfolio-item__tags {
+    color: $gray-500;
+
+    &:after {
+      //framing borders
+      border-color: $gray-700;
+    }
+  }
 }
 </style>

@@ -43,7 +43,7 @@
               </p>
               <p class="mt-5">Sincerely,<br />Patrick John Pacana</p>
             </div>
-            <div class="home-hero__catch-text mt-10">
+            <div class="home-hero__catch-text">
               <p>Please</p>
             </div>
           </div>
@@ -82,12 +82,30 @@
   color: $secondary;
   line-height: 1.3;
 }
+.home-hero__catch-text {
+  position: relative;
+  left: -42px;
+  top: 36px;
+  width: calc(50vw + 42px);
+  overflow: hidden;
+}
+
+@keyframes catch-text-scroll {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
 .home-hero__catch-text p {
   font-family: $headings-font-family;
   font-size: 180px;
   color: $gray-100;
   text-transform: uppercase;
   line-height: 1;
+  mix-blend-mode: multiply;
+  animation: catch-text-scroll 15s linear infinite;
 }
 .home-hero__image-column {
   position: relative;

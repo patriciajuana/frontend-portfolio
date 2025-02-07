@@ -70,7 +70,7 @@ $headings-font-style: null !default;
 // scss-docs-start spacer-variables-maps
 $spacer: 10px !default;
 $spacers: ();
-@for $i from 0 through 10 {
+@for $i from 0 through 20 {
   $spacers: map-merge(
     $spacers,
     (
