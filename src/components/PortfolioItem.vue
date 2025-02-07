@@ -51,7 +51,7 @@ const resolvedImagePath = computed(() => {
         <div class="portfolio-item__body col-6">
           <h2>{{ content.heading }}</h2>
           <p class="portfolio-item__subheading mb-3">{{ content.subheading }}</p>
-          <p class="mb-2">{{ content.description }}</p>
+          <div class="portfolio-item__description mb-2" v-html="content.description"></div>
           <a
             v-if="content.link"
             class="portfolio-item__link"
@@ -151,7 +151,7 @@ const resolvedImagePath = computed(() => {
 .portfolio-item__link {
   font-weight: $font-weight-medium;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
 }
@@ -162,10 +162,14 @@ const resolvedImagePath = computed(() => {
   font-weight: $font-weight-semibold;
 }
 .portfolio-item__details dl > dd ::v-deep(ul) {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   list-style-type: disc;
   list-style-position: inside;
   padding-left: 0;
 }
+
 .portfolio-item__cta .btn ::v-deep(i) {
   font-size: 12px;
   margin-left: 8px;
@@ -194,6 +198,15 @@ const resolvedImagePath = computed(() => {
     transform-origin: left;
     transform: scaleX(10) translateY(-50%);
   }
+}
+.portfolio-item__description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.portfolio-item__description ::v-deep(> p:last-child) {
+  margin-bottom: 0;
 }
 
 //Modifiers: --reverse
@@ -236,7 +249,9 @@ const resolvedImagePath = computed(() => {
   background-color: #2d2d2d;
 
   h2,
-  p:not(.portfolio-item__subheading):not(.portfolio-item__tags):not(.portfolio-item__featured),
+  ::v-deep(
+    p:not(.portfolio-item__subheading):not(.portfolio-item__tags):not(.portfolio-item__featured)
+  ),
   dt,
   dd {
     color: $white;
