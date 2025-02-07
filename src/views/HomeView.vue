@@ -3,5 +3,6 @@
 <template>
   <main>
     <HomeHero></HomeHero>
+    <PortfolioItem></PortfolioItem>
   </main>
 </template>

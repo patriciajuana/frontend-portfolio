@@ -71,7 +71,7 @@
     left: calc(100% + map-get($spacers, 4));
     width: 100%;
     height: calc(100% - 23px);
-    background-color: #f1f1f1;
+    background-color: $gray-100;
     transform-origin: left;
     transform: scaleX(10);
   }
@@ -85,7 +85,7 @@
 .home-hero__catch-text p {
   font-family: $headings-font-family;
   font-size: 180px;
-  color: #f1f1f1;
+  color: $gray-100;
   text-transform: uppercase;
   line-height: 1;
 }
@@ -101,7 +101,7 @@
     left: map-get($spacers, 8);
     width: 100%;
     height: calc(100% - map-get($spacers, 10));
-    background-color: #f1f1f1;
+    background-color: $gray-100;
     z-index: -1;
     transform-origin: right;
     transform: scaleX(10);

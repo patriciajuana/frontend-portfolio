@@ -2,19 +2,20 @@
 
 // scss-docs-start gray-color-variables
 $white: #fff !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #dee2e6 !default;
-$gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
-$gray-600: #6c757d !default;
-$gray-700: #495057 !default;
-$gray-800: #343a40 !default;
-$gray-900: #212529 !default;
+// $gray-100: #f8f9fa !default;
+// $gray-200: #e9ecef !default;
+// $gray-300: #dee2e6 !default;
+// $gray-400: #ced4da !default;
+// $gray-500: #adb5bd !default;
+// $gray-600: #6c757d !default;
+// $gray-700: #495057 !default;
+// $gray-800: #343a40 !default;
+// $gray-900: #212529 !default;
 $black: #000 !default;
 // scss-docs-end gray-color-variables
 
 $primary: #ce2a30 !default;
+$gray-100: #f1f1f1;
 
 // Links
 //
@@ -45,6 +46,14 @@ $font-family-sans-serif:
   'Segoe UI Symbol',
   'Noto Color Emoji' !default;
 
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-semibold: 600 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: bolder !default;
+
 $line-height-base: 1.2 !default;
 
 // scss-docs-start headings-variables
@@ -70,3 +79,10 @@ $spacers: ();
   );
 }
 // scss-docs-end spacer-variables-maps
+
+// Buttons
+//
+// For each of Bootstrap's buttons, define text, background, and border color.
+
+// scss-docs-start btn-variables
+$btn-font-weight: $font-weight-medium;
