@@ -1,7 +1,7 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-  <main class="container">test</main>
+  <main>
+    <HomeHero></HomeHero>
+  </main>
 </template>

@@ -97,10 +97,6 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
 </template>
 
 <style scoped lang="scss">
-@use '@/styles/fonts' as *;
-@use '@/styles/ease' as *;
-@use '@/styles/vendor/bootstrap/variables' as *;
-
 .header {
   //border: 1px solid red;
 }
