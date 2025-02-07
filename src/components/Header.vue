@@ -8,11 +8,9 @@ export interface HeaderNavItem {
   subitems?: HeaderNavItem[]
 }
 
-const props = defineProps({
-  headerNavItems: {
-    type: Array as PropType<HeaderNavItem[]>,
-  },
-})
+const props = defineProps<{
+  headerNavItems: HeaderNavItem[]
+}>()
 
 const navItemHovered = ref()
 const setNavItemHovered = (id: string) => {

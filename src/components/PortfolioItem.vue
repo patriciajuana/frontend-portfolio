@@ -1,61 +1,78 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue'
+
+export interface PortfolioItemContent {
+  modifier?: ''
+  route: string
+  heading: string
+  subheading: string
+  description: string
+  link?: {
+    href: string
+    text: string
+    target?: string
+  }
+  details: {
+    heading: string
+    content: string
+  }[]
+  tags: string[]
+  image: string
+  imageAlt: string
+}
+
+const props = defineProps<{
+  content: PortfolioItemContent
+  count: number
+}>()
+
+const formattedCount = computed(() => {
+  return props.count < 10 ? `0${props.count}` : props.count
+})
+
+const formattedTags = computed(() => {
+  return props.content.tags.join(', ')
+})
+
+const resolvedImagePath = computed(() => {
+  return new URL(`../assets/images/${props.content.image}`, import.meta.url).href
+})
+</script>
 
 <template>
-  <div class="portfolio-item">
+  <div class="portfolio-item" :class="content.modifier">
     <div class="container">
       <div class="row">
         <div class="portfolio-item__body col-6">
-          <h2>KYC Web App</h2>
-          <p class="portfolio-item__subheading mb-3">Identity Verification</p>
-          <p class="mb-2">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At nisi suscipit, quaerat,
-            reiciendis optio illum consequuntur in est aliquam commodi recusandae, quibusdam itaque.
-            Veritatis labore maxime expedita iste beatae aut.
-          </p>
+          <h2>{{ content.heading }}</h2>
+          <p class="portfolio-item__subheading mb-3">{{ content.subheading }}</p>
+          <p class="mb-2">{{ content.description }}</p>
           <a
+            v-if="content.link"
             class="portfolio-item__link"
-            href="https://patriciajuana.github.io/theworldisnotround/"
-            target="_blank"
+            :href="content.link.href"
+            :target="content.link.target"
           >
-            Visit the Website
-            <i class="fas fa-external-link-alt"></i>
+            {{ content.link.text }}
+            <i
+              v-if="content.link.target && content.link.target === '_blank'"
+              class="fas fa-external-link-alt"
+            ></i>
           </a>
           <div class="portfolio-item__sub row mt-4">
             <div class="col-lg-1"></div>
             <div class="col-lg-11">
               <p class="portfolio-item__count">
-                <span>/01</span>
+                <span>/{{ formattedCount }}</span>
               </p>
               <div class="mt-3">
-                <dl class="row">
-                  <dt class="col-3">Client:</dt>
-                  <dd class="col">Humber IGS (Graphics Design for Print and Web)</dd>
-                </dl>
-                <dl class="row">
-                  <dt class="col-3">Deliverables:</dt>
-                  <dd class="col">
-                    <ul class="list-unstyled mb-0">
-                      <li>Branding and Merch</li>
-                      <li>Vinyl album cover</li>
-                      <li>Press Kit</li>
-                      <li>Website</li>
-                    </ul>
-                  </dd>
-                </dl>
-                <dl class="row">
-                  <dt class="col-3">Tools:</dt>
-                  <dd class="col">
-                    <ul class="list-unstyled mb-0">
-                      <li>InDesign</li>
-                      <li>Illustrator</li>
-                      <li>Photoshop</li>
-                      <li>Web Development</li>
-                    </ul>
-                  </dd>
+                <dl v-for="(detail, i) in content.details" :key="i" class="row">
+                  <dt class="col-3">{{ detail.heading }}</dt>
+                  <dd class="col" v-html="detail.content"></dd>
                 </dl>
                 <div class="row mt-4">
                   <div class="col-6">
-                    <a class="btn btn-primary" href="album_release.html">Details</a>
+                    <RouterLink :to="content.route" class="btn btn-primary">Details</RouterLink>
                   </div>
                 </div>
               </div>
@@ -64,8 +81,8 @@
         </div>
         <div class="col-6">
           <div class="portfolio-item__image">
-            <img class="img-fluid" src="@/assets/images/portfolio-preview-bh.jpg" alt="" />
-            <p class="portfolio-item__tags">ideation, composite, creative</p>
+            <img class="img-fluid" :src="resolvedImagePath" :alt="content.imageAlt" />
+            <p class="portfolio-item__tags">{{ formattedTags }}</p>
           </div>
         </div>
       </div>
