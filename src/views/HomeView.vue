@@ -1,5 +1,5 @@
 <script setup>
-import portfolioItems from '@/data/homePortfolioItems'
+import portfolioItems from '@/data/featurePortfolioItems'
 </script>
 
 <template>

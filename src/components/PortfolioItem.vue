@@ -3,7 +3,6 @@ import { computed } from 'vue'
 
 export interface PortfolioItemContent {
   modifier?: string
-  route: string
   heading: string
   subheading: string
   description: string
@@ -19,6 +18,11 @@ export interface PortfolioItemContent {
   tags: string[]
   image: string
   imageAlt: string
+  cta?: {
+    buttonModifier?: string
+    route: string
+    text: string
+  }[]
 }
 
 const props = defineProps<{
@@ -70,9 +74,14 @@ const resolvedImagePath = computed(() => {
                   <dt class="col-3">{{ detail.heading }}</dt>
                   <dd class="col" v-html="detail.content"></dd>
                 </dl>
-                <div class="row mt-4">
-                  <div class="col-6">
-                    <RouterLink :to="content.route" class="btn btn-primary">Details</RouterLink>
+                <div class="d-flex gap-1">
+                  <div v-for="(ctaItem, i) in content.cta" :key="i">
+                    <RouterLink
+                      :to="ctaItem.route"
+                      class="btn"
+                      :class="ctaItem.buttonModifier || 'btn-primary'"
+                      >{{ ctaItem.text }}</RouterLink
+                    >
                   </div>
                 </div>
               </div>

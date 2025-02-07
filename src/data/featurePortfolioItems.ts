@@ -3,7 +3,6 @@ import { PortfolioItemContent } from '@/components/PortfolioItem.vue'
 const portfolioItems: PortfolioItemContent[] = [
   {
     modifier: 'portfolio-item--reverse portfolio-item--dark',
-    route: '/',
     heading: 'KYC Web App',
     subheading: 'Identity Verification',
     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. At nisi suscipit, quaerat,
@@ -27,10 +26,20 @@ const portfolioItems: PortfolioItemContent[] = [
     tags: ['test', 'test2'],
     image: 'portfolio-preview-kyc.jpg',
     imageAlt: '',
+    cta: [
+      {
+        buttonModifier: 'btn-secondary',
+        route: '/',
+        text: 'Details',
+      },
+      {
+        route: '/',
+        text: 'Show more web apps',
+      },
+    ],
   },
   {
     modifier: '',
-    route: '/',
     heading: 'KYC Web App',
     subheading: 'Identity Verification',
     description: `Lorem ipsum dolor sit amet consectetur adipisicing elit. At nisi suscipit, quaerat,
@@ -54,6 +63,17 @@ const portfolioItems: PortfolioItemContent[] = [
     tags: ['test', 'test2'],
     image: 'portfolio-preview-bh.jpg',
     imageAlt: '',
+    cta: [
+      {
+        buttonModifier: 'btn-secondary',
+        route: '/',
+        text: 'Details',
+      },
+      {
+        route: '/',
+        text: 'Show more web apps',
+      },
+    ],
   },
 ]
 
