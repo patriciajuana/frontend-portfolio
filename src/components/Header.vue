@@ -26,13 +26,13 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
 <template>
   <header class="header py-4">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <div class="header__logo">
+      <div class="row">
+        <div class="header__logo col">
           <a href="/">
             <img src="@/assets/images/logo.svg" alt="Patrick - Creative Frontend Developer" />
           </a>
         </div>
-        <div class="header__nav">
+        <div class="header__nav col-6">
           <nav>
             <!-- Main Navigation Items -->
             <ul class="header__nav-list list-unstyled mb-0 d-flex">

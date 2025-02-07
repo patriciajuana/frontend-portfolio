@@ -60,12 +60,13 @@ $headings-font-style: null !default;
 
 // scss-docs-start spacer-variables-maps
 $spacer: 10px !default;
-$spacers: (
-  0: 0,
-  1: $spacer,
-  2: $spacer * 2,
-  3: $spacer * 3,
-  4: $spacer * 4,
-  5: $spacer * 5,
-) !default;
+$spacers: ();
+@for $i from 0 through 10 {
+  $spacers: map-merge(
+    $spacers,
+    (
+      $i: $spacer * $i,
+    )
+  );
+}
 // scss-docs-end spacer-variables-maps
