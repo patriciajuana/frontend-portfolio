@@ -26,9 +26,7 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
     <div class="container">
       <div class="row">
         <div class="header__logo col">
-          <a href="/">
-            <img src="@/assets/images/logo.svg" alt="Patrick - Creative Frontend Developer" />
-          </a>
+          <Logo></Logo>
         </div>
         <div class="header__nav col-6">
           <nav>

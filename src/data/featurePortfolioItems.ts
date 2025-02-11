@@ -29,15 +29,6 @@ const portfolioItems: PortfolioItemContent[] = [
                       <li>Sharp</li>
                     </ul>`,
       },
-      {
-        heading: 'Middleware Tech Stack:',
-        content: `  <ul>
-                      <li>NodeJS</li>
-                      <li>Express</li>
-                      <li>MySQL</li>
-                      <li>Sharp</li>
-                    </ul>`,
-      },
     ],
     tags: ['developer', 'designer'],
     image: 'portfolio-preview-kyc.jpg',

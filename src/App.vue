@@ -6,6 +6,7 @@ import headerNavItems from '@/data/headerNavItems'
 <template>
   <Header :header-nav-items="headerNavItems"></Header>
   <RouterView />
+  <Footer></Footer>
 </template>
 
 <style scoped lang="scss"></style>

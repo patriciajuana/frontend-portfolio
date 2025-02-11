@@ -20,10 +20,6 @@ const headerNavItems: HeaderNavItem[] = [
     text: 'Design',
   },
   {
-    route: '/fun-stuff',
-    text: 'Fun Stuff',
-  },
-  {
     route: '/contact',
     text: 'Contact',
     subitems: [
