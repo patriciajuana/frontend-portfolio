@@ -6,7 +6,7 @@ const headerNavItems: HeaderNavItem[] = [
     text: 'Web Apps',
     subitems: [
       {
-        route: '/kyc',
+        route: '/kyc-web-app',
         text: 'KYC Web App',
       },
     ],

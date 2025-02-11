@@ -56,22 +56,42 @@
 .footer nav li a {
   font-family: $font-broadacre-light;
   font-size: 12px;
+
+  &:hover {
+    color: $primary;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
 }
 .footer__social {
   gap: 5px;
 }
 .footer__social a {
   font-family: $font-oswald;
-  //font-weight: $font-weight-light;
   font-size: 14px;
   color: #afafaf;
   text-decoration: none;
+  transition: color 0.25s ease-out;
+}
+.footer__social a:hover {
+  color: $primary;
+  text-decoration: underline;
+
+  i {
+    transform: none;
+  }
+  i img {
+    transform: scale(0.9);
+  }
 }
 .footer__social i {
   transform: rotate(90deg) translateX(2px);
+  transition: transform 0.25s ease-out;
 }
 .footer__social i img {
   width: 18px;
+  transition: transform 0.25s ease-out;
 }
 .footer__copyright {
   font-size: 12px;

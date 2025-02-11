@@ -21,4 +21,9 @@ import portfolioItems from '@/data/featurePortfolioItems'
     padding-top: map-get($spacers, 20) !important;
   }
 }
+.home-view__featured > section:last-child {
+  ::v-deep(.portfolio-item) {
+    padding-bottom: map-get($spacers, 10) !important;
+  }
+}
 </style>

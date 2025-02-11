@@ -94,7 +94,8 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
 
 <style scoped lang="scss">
 .header {
-  //border: 1px solid red;
+  position: relative;
+  z-index: 100;
 }
 
 .header__nav-link,
@@ -147,13 +148,14 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
 }
 .header__submenu-list {
   opacity: 0;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.1s ease-out;
 }
 .header__submenu.is-active {
   pointer-events: auto;
 
   .header__submenu-list {
     opacity: 1;
+    transition: opacity 0.5s ease-out 0.25s;
   }
 
   &:before {

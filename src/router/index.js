@@ -17,6 +17,11 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       //component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/kyc-web-app',
+      name: 'KYC Web App',
+      component: () => import('../views/PortfolioView.vue'),
+    },
   ],
 })
 
