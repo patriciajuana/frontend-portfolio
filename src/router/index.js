@@ -19,8 +19,15 @@ const router = createRouter({
     },
     {
       path: '/kyc-web-app',
-      name: 'KYC Web App',
+      name: 'kyc-web-app',
       component: () => import('../views/PortfolioView.vue'),
+      props: (route) => ({ id: route.name }),
+    },
+    {
+      path: '/blackhawk-tire-website',
+      name: 'blackhawk-tire-website',
+      component: () => import('../views/PortfolioView.vue'),
+      props: (route) => ({ id: route.name }),
     },
   ],
 })

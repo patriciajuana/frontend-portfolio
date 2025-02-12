@@ -1,63 +1,71 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
+import api from '@/mocks/api'
+import { resolveImagePath } from '@/utils/paths'
+import { onMounted, ref } from 'vue'
+
+const props = defineProps<{ id: string }>()
+
+onMounted(() => {
+  getPortfolioItem()
+  console.log(props.id)
+})
+
+const portfolioItem = ref()
+const getPortfolioItem = async () => {
+  try {
+    const response = await api.get('/portfolio-items', {
+      params: {
+        ids: props.id,
+      },
+    })
+    portfolioItem.value = response.data[0]
+  } catch (err) {
+    console.log(err)
+  }
+}
+</script>
 
 <template>
-  <div class="portfolio-view">
+  <div v-if="portfolioItem" class="portfolio-view">
     <div class="portfolio-view__hero">
       <div class="container">
         <div class="portfolio-view__hero-layout row">
           <div class="col col-5">
-            <h1>Album Release Package</h1>
-            <p class="portfolio-view__subheading mt-1">TheWorldIsNotRound</p>
-            <div class="portfolio-view__description my-3">
-              <p>
-                This project contribute to the official launch of my friend's third music album
-                called "•••". The art style explores ideas of vintage, hazy, misty, surreal,
-                ethereal or dream-like atmospheric elements, landscapes and textures.
-              </p>
-              <p>
-                The band characterizes their as a feeling of tearing up while standing on a beach at
-                around 4 pm, with impending rain clouds approaching, and this concept has
-                undoubtedly been taken into account when creating the visuals.
-              </p>
-            </div>
-            <ul class="portfolio-view__links d-flex flex-column ps-0">
-              <li>
-                <a href="#">Visit the Website</a>
-              </li>
-              <li>
-                <a href="#">Visit the Website</a>
+            <h1>{{ portfolioItem.heading }}</h1>
+            <p class="portfolio-view__subheading mt-1">{{ portfolioItem.subheading }}</p>
+            <div class="portfolio-view__description my-3" v-html="portfolioItem.description"></div>
+            <ul
+              v-if="portfolioItem.links"
+              class="portfolio-view__links list-unstyled d-flex flex-wrap gap-2 ps-0"
+            >
+              <li v-for="(link, i) in portfolioItem.links" :key="i">
+                <a :href="link.href" :target="link.target">
+                  {{ link.text }}
+                  <i
+                    v-if="link.target && link.target === '_blank'"
+                    class="fas fa-external-link-alt"
+                  ></i>
+                </a>
               </li>
             </ul>
           </div>
           <div class="portfolio-view__hero-image-section col col-7">
             <div class="portfolio-view__hero-image">
-              <img class="img-fluid" src="@/assets/images/portfolio-preview-album.jpg" alt="" />
+              <img
+                class="img-fluid"
+                :src="resolveImagePath(portfolioItem.image)"
+                :alt="portfolioItem.imageAlt"
+              />
             </div>
           </div>
         </div>
         <div class="portfolio-view__details mt-2 py-3">
           <div class="row">
-            <div v-for="i in 3" :key="i" class="col">
+            <div v-for="(detail, i) in portfolioItem.details" :key="i" class="col">
               <dl>
-                <dt>Client:</dt>
-                <dd class="mt-1">
-                  <ul>
-                    <li>Branding and Merch</li>
-                    <li>Vinyl album cover</li>
-                    <li>Press Kit</li>
-                    <li>Website</li>
-                  </ul>
-                </dd>
-              </dl>
-            </div>
-            <div class="col">
-              <dl>
-                <dt>Client:</dt>
-                <dd class="mt-1">
-                  The objective of this project is to craft graphic design content for a
-                  comprehensive album launch initiative. This represents the culmination of
-                  proficiencies acquired across all subjects covered throughout the courses.
-                </dd>
+                <dt>{{ detail.heading }}</dt>
+                <dd class="mt-1" v-html="detail.content"></dd>
               </dl>
             </div>
           </div>
@@ -65,17 +73,8 @@
       </div>
     </div>
     <div class="portfolio-view__body">
-      <section class="portfolio-view__item">
+      <section v-for="i in 3" :key="i" class="portfolio-view__item">
         <img class="img-fluid" src="@/assets/images/kyc-web-app-placeholder.jpg" alt="" />
-        <div class="portfolio-view__item-description">
-          <div class="container">
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aut perferendis illum
-              reprehenderit fugit assumenda in quam, perspiciatis debitis cum, consequatur veritatis
-              quod molestias ullam? Labore debitis amet accusantium architecto adipisci?
-            </p>
-          </div>
-        </div>
       </section>
     </div>
   </div>
@@ -113,10 +112,6 @@
 }
 .portfolio-view__description p {
   font-weight: $font-weight-light;
-}
-.portfolio-view__links {
-  gap: 5px;
-  list-style-position: inside;
 }
 .portfolio-view__links a {
   font-weight: $font-weight-medium;

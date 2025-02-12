@@ -1,13 +1,41 @@
-<script setup>
-import portfolioItems from '@/data/featurePortfolioItems'
+<script setup lang="ts">
+import featuredPortfolioItemsData from '@/data/featuredPortfolioItemsData'
+import api from '@/mocks/api'
+import { onMounted, ref } from 'vue'
+
+onMounted(() => {
+  getFeaturedPortfolioItems()
+})
+
+const featuredPortfolioItems = ref()
+const getFeaturedPortfolioItems = async () => {
+  try {
+    const response = await api.get('/portfolio-items', {
+      params: {
+        ids: featuredPortfolioItemsData.map((e) => e.id).join(','),
+      },
+    })
+    featuredPortfolioItems.value = response.data
+  } catch (err) {}
+}
+
+const moreCTA = (id: string) => {
+  const data = featuredPortfolioItemsData.find((e) => e.id)
+  return data?.moreCTA
+}
 </script>
 
 <template>
   <main class="home-view">
     <HomeHero></HomeHero>
     <div class="home-view__featured">
-      <section v-for="(item, i) in portfolioItems" :key="i">
-        <PortfolioItem :content="item" :count="`${i + 1}`"></PortfolioItem>
+      <section v-for="(item, i) in featuredPortfolioItems" :key="item.id">
+        <PortfolioItem
+          isFeatured
+          :content="item"
+          :count="i + 1"
+          :moreCTA="moreCTA(item.id)"
+        ></PortfolioItem>
       </section>
     </div>
   </main>

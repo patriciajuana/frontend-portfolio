@@ -1,34 +1,12 @@
 <script setup lang="ts">
+import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 import { computed } from 'vue'
-
-export interface PortfolioItemContent {
-  modifier?: string
-  heading: string
-  subheading: string
-  description: string
-  link?: {
-    href: string
-    text: string
-    target?: string
-  }
-  details: {
-    heading: string
-    content: string
-  }[]
-  tags: string[]
-  image: string
-  imageAlt: string
-  cta?: {
-    buttonModifier?: string
-    route: string
-    text: string
-  }[]
-  isFeatured?: boolean
-}
 
 const props = defineProps<{
   content: PortfolioItemContent
   count: number
+  moreCTA?: { route: string; text: string }
+  isFeatured?: boolean
 }>()
 
 const formattedCount = computed(() => {
@@ -52,18 +30,17 @@ const resolvedImagePath = computed(() => {
           <h2>{{ content.heading }}</h2>
           <p class="portfolio-item__subheading mb-3">{{ content.subheading }}</p>
           <div class="portfolio-item__description mb-2" v-html="content.description"></div>
-          <a
-            v-if="content.link"
-            class="portfolio-item__link"
-            :href="content.link.href"
-            :target="content.link.target"
-          >
-            {{ content.link.text }}
-            <i
-              v-if="content.link.target && content.link.target === '_blank'"
-              class="fas fa-external-link-alt"
-            ></i>
-          </a>
+          <ul v-if="content.links" class="list-unstyled d-flex gap-2">
+            <li v-for="(link, i) in content.links" :key="i">
+              <a v-if="link" class="portfolio-item__link" :href="link.href" :target="link.target">
+                {{ link.text }}
+                <i
+                  v-if="link.target && link.target === '_blank'"
+                  class="fas fa-external-link-alt"
+                ></i>
+              </a>
+            </li>
+          </ul>
           <div class="portfolio-item__sub row mt-4">
             <div class="col-lg-1"></div>
             <div class="col-lg-11">
@@ -76,14 +53,11 @@ const resolvedImagePath = computed(() => {
                   <dd class="col" v-html="detail.content"></dd>
                 </dl>
                 <div class="portfolio-item__cta d-flex gap-1">
-                  <div v-for="(ctaItem, i) in content.cta" :key="i">
-                    <RouterLink
-                      :to="ctaItem.route"
-                      class="btn"
-                      :class="ctaItem.buttonModifier || 'btn-primary'"
-                      v-html="ctaItem.text"
-                    ></RouterLink>
-                  </div>
+                  <RouterLink :to="`/${content.id}`" class="btn btn-secondary">Details</RouterLink>
+                  <RouterLink v-if="moreCTA" :to="moreCTA.route" class="btn btn-primary">
+                    {{ moreCTA.text }}
+                    <i class="fas fa-long-arrow-alt-right"></i>
+                  </RouterLink>
                 </div>
               </div>
             </div>
@@ -93,7 +67,7 @@ const resolvedImagePath = computed(() => {
           <div class="portfolio-item__image">
             <img class="img-fluid" :src="resolvedImagePath" :alt="content.imageAlt" />
             <p class="portfolio-item__tags">{{ formattedTags }}</p>
-            <p v-if="content.isFeatured" class="portfolio-item__featured">Featured Portfolio</p>
+            <p v-if="isFeatured" class="portfolio-item__featured">Featured Portfolio</p>
           </div>
         </div>
       </div>
@@ -151,9 +125,6 @@ const resolvedImagePath = computed(() => {
 .portfolio-item__link {
   font-weight: $font-weight-medium;
   text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
 }
 .portfolio-item__link i {
   font-size: 12px;
