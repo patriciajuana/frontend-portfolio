@@ -99,7 +99,7 @@ const getRandomCardHeight = () => {
     width: 100%;
     height: 90px;
     background-color: $gray-100;
-    display: none;
+    //display: none;
   }
 }
 .portfolio-list__header p {

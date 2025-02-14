@@ -35,6 +35,12 @@ const router = createRouter({
       component: () => import('../views/PortfolioView.vue'),
       props: (route) => ({ id: route.name }),
     },
+    {
+      path: '/album-release-package',
+      name: 'album-release-package',
+      component: () => import('../views/PortfolioView.vue'),
+      props: (route) => ({ id: route.name }),
+    },
   ],
 })
 

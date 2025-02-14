@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PropType, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 export interface HeaderNavItem {
   text: string
@@ -18,6 +19,11 @@ const setNavItemHovered = (id: string) => {
 }
 const isNavItemActive = (navItem: HeaderNavItem) => {
   return navItemHovered.value === navItem.route || navItem.href
+}
+
+const route = useRoute()
+const isNavItemCurrent = (navItem: HeaderNavItem) => {
+  return route.path === navItem.route
 }
 </script>
 
@@ -44,6 +50,7 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
                   class="header__nav-link d-flex align-items-center gap-1 p-2"
                   :class="{
                     'is-active': isNavItemActive(item),
+                    'is-current': isNavItemCurrent(item),
                   }"
                   @mouseenter="setNavItemHovered(item.route || item.href || '')"
                 >
@@ -111,6 +118,9 @@ const isNavItemActive = (navItem: HeaderNavItem) => {
 }
 
 .header__nav-link.is-active {
+  color: $primary;
+}
+.header__nav-link.is-current {
   color: $primary;
 }
 

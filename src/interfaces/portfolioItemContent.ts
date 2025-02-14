@@ -13,7 +13,8 @@ export interface PortfolioItemContent {
     heading: string
     content: string
   }[]
-  tags: string[]
+  tags?: string[]
+  cardTags?: string[]
   image: string
   imageAlt: string
   cardImage: string

@@ -2,7 +2,7 @@ import type { HeaderNavItem } from '@/components/Header.vue'
 
 const headerNavItems: HeaderNavItem[] = [
   {
-    route: '/web-apps',
+    route: '/web-app-portfolios',
     text: 'Web Apps',
     subitems: [
       {

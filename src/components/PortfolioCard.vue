@@ -17,10 +17,8 @@ const props = defineProps<{ content: PortfolioItemContent }>()
           <i class="fa-solid fa-arrow-right-long"></i>
         </h2>
         <p class="portfolio-card__subheading">{{ content.subheading }}</p>
-        <ul class="portfolio-card__tags list-unstyled">
-          <li>Vue3</li>
-          <li>NodeJS</li>
-          <li>Express</li>
+        <ul v-if="content.cardTags" class="portfolio-card__tags list-unstyled">
+          <li v-for="(tag, i) in content.cardTags" :key="i">{{ tag }}</li>
         </ul>
       </div>
     </RouterLink>
