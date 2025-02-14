@@ -18,6 +18,12 @@ const router = createRouter({
       //component: () => import('../views/AboutView.vue'),
     },
     {
+      path: '/web-app-portfolios',
+      name: 'web-app-portfolios',
+      component: () => import('../views/PortfolioList.vue'),
+      props: (route) => ({ id: route.name }),
+    },
+    {
       path: '/kyc-web-app',
       name: 'kyc-web-app',
       component: () => import('../views/PortfolioView.vue'),

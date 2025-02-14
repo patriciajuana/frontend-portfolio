@@ -15,12 +15,14 @@
     "axios": "^1.7.9",
     "axios-mock-adapter": "^2.1.0",
     "bootstrap": "^5.3.3",
+    "masonry-layout": "^4.2.2",
     "pinia": "^2.3.1",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
+    "@types/masonry-layout": "^4.2.8",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/eslint-config-prettier": "^10.1.0",
     "@vue/runtime-dom": "^3.5.13",

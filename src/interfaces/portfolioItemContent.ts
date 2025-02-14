@@ -16,4 +16,6 @@ export interface PortfolioItemContent {
   tags: string[]
   image: string
   imageAlt: string
+  cardImage: string
+  cardImageAlt: string
 }

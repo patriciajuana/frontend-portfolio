@@ -1,8 +1,9 @@
 export default [
   {
     id: 'kyc-web-app',
+    modifiers: 'portfolio-item--reverse portfolio-item--dark',
     moreCTA: {
-      route: '/',
+      route: '/web-app-portfolios',
       text: 'More Web App Portfolios',
     },
   },
@@ -15,6 +16,7 @@ export default [
   },
   {
     id: 'album-release-package',
+    modifiers: 'portfolio-item--reverse portfolio-item--dark',
     moreCTA: {
       route: '/',
       text: 'More Design Portfolios',

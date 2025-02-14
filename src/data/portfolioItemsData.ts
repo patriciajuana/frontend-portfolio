@@ -34,6 +34,8 @@ const portfolioItems: PortfolioItemContent[] = [
     tags: ['developer', 'designer'],
     image: 'portfolio-preview-kyc.jpg',
     imageAlt: '',
+    cardImage: 'portfolio-preview-kyc.jpg',
+    cardImageAlt: '',
   },
   {
     id: 'blackhawk-tire-website',
@@ -59,15 +61,20 @@ const portfolioItems: PortfolioItemContent[] = [
         content: 'Blackhawk Tire (via Disruptive Art Studio)',
       },
       {
-        heading: 'Tech Stack:',
+        heading: 'Highlighted Tech Stack:',
         content: `  <ul>
-                      <li>Wordpress</li>                      
+                      <li>Wordpress</li>
+                      <li>Vue2</li>
+                      <li>Bootstrap</li>
+                      <li>Docker</li>
                     </ul>`,
       },
     ],
     tags: ['developer', 'designer'],
     image: 'portfolio-preview-bh.jpg',
     imageAlt: '',
+    cardImage: 'portfolio-preview-bh.jpg',
+    cardImageAlt: '',
   },
   {
     id: 'album-release-package',
@@ -111,6 +118,8 @@ const portfolioItems: PortfolioItemContent[] = [
     tags: ['developer', 'designer', 'ideation', 'composite'],
     image: 'portfolio-preview-album.jpg',
     imageAlt: '',
+    cardImage: 'portfolio-preview-album.jpg',
+    cardImageAlt: '',
   },
 ]
 

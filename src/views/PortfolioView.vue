@@ -8,7 +8,6 @@ const props = defineProps<{ id: string }>()
 
 onMounted(() => {
   getPortfolioItem()
-  console.log(props.id)
 })
 
 const portfolioItem = ref()

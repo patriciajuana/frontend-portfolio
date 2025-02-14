@@ -19,22 +19,21 @@ const getFeaturedPortfolioItems = async () => {
   } catch (err) {}
 }
 
-const moreCTA = (id: string) => {
-  const data = featuredPortfolioItemsData.find((e) => e.id)
-  return data?.moreCTA
+const contentData = (id: string) => {
+  return featuredPortfolioItems.value.find((e: any) => e.id === id)
 }
 </script>
 
 <template>
   <main class="home-view">
     <HomeHero></HomeHero>
-    <div class="home-view__featured">
-      <section v-for="(item, i) in featuredPortfolioItems" :key="item.id">
+    <div v-if="featuredPortfolioItems" class="home-view__featured">
+      <section v-for="(item, i) in featuredPortfolioItemsData" :key="item.id">
         <PortfolioItem
           isFeatured
-          :content="item"
+          :content="contentData(item.id)"
           :count="i + 1"
-          :moreCTA="moreCTA(item.id)"
+          :moreCTA="item.moreCTA"
         ></PortfolioItem>
       </section>
     </div>
