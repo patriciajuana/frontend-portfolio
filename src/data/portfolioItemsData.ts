@@ -6,28 +6,29 @@ const portfolioItems: PortfolioItemContent[] = [
     modifier: 'portfolio-item--reverse portfolio-item--dark',
     heading: 'KYC Web App',
     subheading: 'Identity Verification',
-    description: `<p>Designed and developed a secure identity verification platform that performs liveness detection, matches selfies with ID documents, and verifies age for compliance and fraud prevention.</p>`,
+    description: `
+                  <p>Built a secure identity verification web app to showcase and market their SaaS KYC API solutions. The platform features liveness detection, selfie-to-ID verification, and age validation, allowing potential clients to interact with the technology firsthand.</p>
+                  <p>Developed using Vue 3 and Vuetify for the frontend and Node.js/Express with MySQL for the backend, it delivers a smooth user experience while highlighting the company's advanced identity verification capabilities.</p>`,
     details: [
       {
-        heading: 'Client:',
-        content: 'Progeny',
+        heading: 'Company:',
+        content: 'Institute for Machine Learning GmbH',
       },
       {
-        heading: 'Frontend Tech Stack:',
+        heading: 'Frontend Framework & Tools:',
         content: `  <ul>
                       <li>Vue3</li>
-                      <li>Pinia</li>
                       <li>Vuetify</li>
+                      <li>Pinia</li>                      
                       <li>Axios</li>
                     </ul>`,
       },
       {
-        heading: 'Middleware Tech Stack:',
+        heading: 'Backend/Middleware Tech Stack:',
         content: `  <ul>
-                      <li>NodeJS</li>
-                      <li>Express</li>
-                      <li>MySQL</li>
+                      <li>NodeJS / Express / JWT</li>
                       <li>Sharp</li>
+                      <li>MySQL / Sequelize</li>
                     </ul>`,
       },
     ],
@@ -37,6 +38,18 @@ const portfolioItems: PortfolioItemContent[] = [
     imageAlt: '',
     cardImage: 'portfolio-preview-kyc.jpg',
     cardImageAlt: '',
+    images: {
+      featured: {
+        src: 'portfolio-preview-kyc.jpg',
+      },
+      single: {
+        src: 'single-kyc-web-app.jpg',
+        alt: 'test',
+      },
+      card: {
+        src: 'portfolio-preview-kyc.jpg',
+      },
+    },
   },
   {
     id: 'blackhawk-tire-website',

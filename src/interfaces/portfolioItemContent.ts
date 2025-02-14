@@ -19,4 +19,22 @@ export interface PortfolioItemContent {
   imageAlt: string
   cardImage: string
   cardImageAlt: string
+  images?: {
+    featured?: {
+      src: string
+      alt?: string
+    }
+    single?: {
+      src: string
+      alt?: string
+    }
+    card?: {
+      src: string
+      alt?: string
+    }
+    gallery?: {
+      src: string
+      alt?: string
+    }[]
+  }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
+import { resolveImagePath } from '@/utils/paths'
 import { computed } from 'vue'
 
 const props = defineProps<{
@@ -14,11 +15,7 @@ const formattedCount = computed(() => {
 })
 
 const formattedTags = computed(() => {
-  return props.content.tags.join(', ')
-})
-
-const resolvedImagePath = computed(() => {
-  return new URL(`../assets/images/${props.content.image}`, import.meta.url).href
+  return props.content.tags ? props.content.tags.join(', ') : ''
 })
 </script>
 
@@ -65,7 +62,11 @@ const resolvedImagePath = computed(() => {
         </div>
         <div class="col-6">
           <div class="portfolio-item__image">
-            <img class="img-fluid" :src="resolvedImagePath" :alt="content.imageAlt" />
+            <img
+              class="img-fluid"
+              :src="resolveImagePath(props.content.images?.featured?.src)"
+              :alt="content.imageAlt"
+            />
             <p class="portfolio-item__tags">{{ formattedTags }}</p>
             <p v-if="isFeatured" class="portfolio-item__featured">Featured Portfolio</p>
           </div>

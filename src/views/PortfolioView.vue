@@ -53,8 +53,8 @@ const getPortfolioItem = async () => {
             <div class="portfolio-view__hero-image">
               <img
                 class="img-fluid"
-                :src="resolveImagePath(portfolioItem.image)"
-                :alt="portfolioItem.imageAlt"
+                :src="resolveImagePath(portfolioItem.images?.single?.src)"
+                :alt="portfolioItem.images?.single?.alt"
               />
             </div>
           </div>
@@ -101,7 +101,7 @@ const getPortfolioItem = async () => {
   font-family: $font-broadacre-regular;
   font-size: 80px;
   text-transform: uppercase;
-  line-height: 1.1;
+  line-height: 1;
 }
 .portfolio-view__subheading {
   font-family: $font-oswald;
@@ -109,8 +109,10 @@ const getPortfolioItem = async () => {
   text-transform: uppercase;
   color: $primary;
 }
-.portfolio-view__description p {
+.portfolio-view__description,
+.portfolio-view__description:deep(p) {
   font-weight: $font-weight-light;
+  line-height: 1.5;
 }
 .portfolio-view__links a {
   font-weight: $font-weight-medium;
