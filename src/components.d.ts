@@ -11,6 +11,7 @@ declare module 'vue' {
     Header: typeof import('./components/Header.vue')['default']
     HomeHero: typeof import('./components/HomeHero.vue')['default']
     Logo: typeof import('./components/Logo.vue')['default']
+    PortfolioCard: typeof import('./components/PortfolioCard.vue')['default']
     PortfolioItem: typeof import('./components/PortfolioItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

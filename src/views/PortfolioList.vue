@@ -69,24 +69,16 @@ const getRandomCardHeight = () => {
           </p>
         </div>
       </div>
-      <div class="portfolio-list__grid mt-3" ref="grid">
-        <div
+      <ul class="portfolio-list__grid list-unstyled ps-0 mt-3" ref="grid">
+        <li
           v-for="item in portfolioItems"
           :key="item.id"
           class="js-grid-item portfolio-list__grid-item"
           :class="`portfolio-list__grid-item--${getRandomCardHeight()}`"
         >
-          <img :src="resolveImagePath(item.cardImage)" :alt="item.cardImageAlt" />
-        </div>
-        <div
-          v-for="item in portfolioItems"
-          :key="item.id"
-          class="js-grid-item portfolio-list__grid-item"
-          :class="`portfolio-list__grid-item--${getRandomCardHeight()}`"
-        >
-          <img :src="resolveImagePath(item.cardImage)" :alt="item.cardImageAlt" />
-        </div>
-      </div>
+          <PortfolioCard :content="item"></PortfolioCard>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -134,9 +126,11 @@ const getRandomCardHeight = () => {
   }
 }
 
-.portfolio-list__grid-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.portfolio-list__grid-item {
+  :deep(.portfolio-card),
+  :deep(.portfolio-card > a),
+  :deep(.portfolio-card__image) {
+    height: 100%;
+  }
 }
 </style>
