@@ -30,6 +30,18 @@ const router = createRouter({
       props: (route) => ({ id: route.name }),
     },
     {
+      path: '/kyc-admin',
+      name: 'kyc-admin',
+      component: () => import('../views/PortfolioView.vue'),
+      props: (route) => ({ id: route.name }),
+    },
+    {
+      path: '/radium',
+      name: 'radium',
+      component: () => import('../views/PortfolioView.vue'),
+      props: (route) => ({ id: route.name }),
+    },
+    {
       path: '/blackhawk-tire-website',
       name: 'blackhawk-tire-website',
       component: () => import('../views/PortfolioView.vue'),

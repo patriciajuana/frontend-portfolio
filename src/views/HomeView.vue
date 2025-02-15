@@ -31,6 +31,7 @@ const contentData = (id: string) => {
       <section v-for="(item, i) in featuredPortfolioItemsData" :key="item.id">
         <PortfolioItem
           isFeatured
+          :modifiers="item.modifiers"
           :content="contentData(item.id)"
           :count="i + 1"
           :moreCTA="item.moreCTA"

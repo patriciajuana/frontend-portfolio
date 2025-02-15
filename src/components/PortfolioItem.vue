@@ -4,6 +4,7 @@ import { resolveImagePath } from '@/utils/paths'
 import { computed } from 'vue'
 
 const props = defineProps<{
+  modifiers?: string
   content: PortfolioItemContent
   count: number
   moreCTA?: { route: string; text: string }
@@ -20,7 +21,7 @@ const formattedTags = computed(() => {
 </script>
 
 <template>
-  <div class="portfolio-item pt-12 pb-4" :class="content.modifier">
+  <div class="portfolio-item pt-12 pb-4" :class="modifiers">
     <div class="container">
       <div class="portfolio-item__layout row">
         <div class="portfolio-item__body col-6">

@@ -93,12 +93,12 @@ const getSequentialImagePath = (count: number) => {
     <div class="portfolio-view__gallery mt-3">
       <div
         :class="{
-          container: metadata.gallery.hasContainer,
+          container: metadata?.gallery?.hasContainer,
         }"
       >
         <ul v-if="portfolioItem.images?.gallery" class="list-unstyled">
           <li
-            v-if="metadata.gallery.isSequential"
+            v-if="metadata?.gallery?.isSequential"
             v-for="i in metadata.gallery.sequentialCount"
             :key="i"
             class="portfolio-view__gallery-item"

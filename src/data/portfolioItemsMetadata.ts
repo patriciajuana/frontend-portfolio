@@ -8,4 +8,18 @@ export default [
       sequentialCount: 7,
     },
   },
+  {
+    id: 'kyc-admin',
+    gallery: {
+      isSequential: true,
+      sequentialCount: 6,
+    },
+  },
+  {
+    id: 'radium',
+    gallery: {
+      isSequential: true,
+      sequentialCount: 7,
+    },
+  },
 ]

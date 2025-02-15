@@ -3,7 +3,6 @@ import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 const portfolioItems: PortfolioItemContent[] = [
   {
     id: 'kyc-web-app',
-    modifier: 'portfolio-item--reverse portfolio-item--dark',
     heading: 'KYC Web App',
     subheading: 'Identity Verification',
     description: `
@@ -17,7 +16,7 @@ const portfolioItems: PortfolioItemContent[] = [
       {
         heading: 'Frontend Framework & Tools:',
         content: `  <ul>
-                      <li>Vue 3</li>
+                      <li>Vue3</li>
                       <li>Vuetify</li>
                       <li>Pinia</li>                      
                       <li>Axios</li>
@@ -32,7 +31,7 @@ const portfolioItems: PortfolioItemContent[] = [
                     </ul>`,
       },
     ],
-    tags: ['developer', 'designer'],
+    tags: ['vue3', 'developer', 'designer'],
     cardTags: ['Vue3', 'NodeJS', 'Express'],
     image: 'portfolio-preview-kyc.jpg',
     imageAlt: '',
@@ -52,6 +51,140 @@ const portfolioItems: PortfolioItemContent[] = [
       gallery: [
         {
           src: 'gallery-kyc-web-app.jpg',
+        },
+      ],
+    },
+  },
+  {
+    id: 'kyc-admin',
+    heading: 'KYC Admin',
+    subheading: 'Identity Verification',
+    description: `
+                  <p>
+                    A powerful admin dashboard designed to manage users, clients, and KYC API
+                    integrations efficiently. The platform enables seamless administration of
+                    identity verification services while providing insights into API performance
+                    and usage.
+                  </p>
+
+                  <p>Key features include:</p>
+
+                  <ul>  
+                      <li><strong>User Management</strong> – Manage admin and client accounts with role-based access control.</li>
+                      <li><strong>Multi-Client Management</strong> – Support multiple businesses with separate KYC configurations.</li>
+                      <li><strong>KYC Settings</strong> – Configure API sources such as liveness detection, OCR, and face comparison.</li>
+                      <li><strong>API Source Testing</strong> – Verify the functionality of integrated KYC services before deployment.</li>
+                      <li><strong>Telemetry & Analytics</strong> – Monitor API usage patterns and track performance metrics. API</li>
+                      <li><strong>Usage Logs</strong> – Maintain detailed logs of API interactions for auditing and compliance.</li>  
+                  </ul>
+                  `,
+    details: [
+      {
+        heading: 'Company:',
+        content: 'Institute for Machine Learning GmbH',
+      },
+      {
+        heading: 'Frontend Framework & Tools:',
+        content: `  <ul>
+                      <li>Angular 10</li>
+                      <li>Material UI</li>
+                    </ul>`,
+      },
+      {
+        heading: 'Middleware Tech Stack:',
+        content: `  <ul>
+                      <li>NodeJS / Express</li>                      
+                      <li>Docker / PM2</li>
+                    </ul>`,
+      },
+    ],
+    tags: ['angular', 'developer', 'designer'],
+    cardTags: ['Vue3', 'NodeJS', 'Express'],
+    image: 'portfolio-preview-kyc.jpg',
+    imageAlt: '',
+    cardImage: 'portfolio-preview-kyc.jpg',
+    cardImageAlt: '',
+    images: {
+      featured: {
+        src: 'portfolio-preview-kyc.jpg',
+      },
+      single: {
+        src: 'single-kyc-admin.jpg',
+        alt: 'test',
+      },
+      card: {
+        src: 'gallery-kyc-web-app-1.jpg',
+      },
+      gallery: [
+        {
+          src: 'gallery-kyc-admin.jpg',
+        },
+      ],
+    },
+  },
+  {
+    id: 'radium',
+    heading: 'Radium',
+    subheading: 'High-speed AI training and deployment',
+    description: `
+                  <p>Developed and designed the frontend platform for an advanced AI cloud service, enabling users to seamlessly manage their AI projects and infrastructure.</p> 
+                  <p>The platform features:</p>
+                  <ul>
+                      <li>Login and Email Verification: Secure user authentication and email confirmation for account setup.</li>
+                      <li>Project Creation: Intuitive project creation and management interface to organize and launch AI models.</li>
+                      <li>Server Management: Robust tools to manage AI server resources, monitor performance, and optimize usage.</li>
+                      <li>Telemetry for Storage Network: Real-time telemetry to track storage network performance and usage.</li>
+                      <li>User Management: Advanced role-based access control with customizable permissions for different user roles.</li>
+                      <li>Profile/Account Management: User-friendly profile settings to manage account details and preferences.</li>
+                  </ul>
+                  `,
+    links: [
+      {
+        href: 'https://www.radium.cloud/',
+        text: 'Visit the Website',
+        target: '_blank',
+      },
+    ],
+    details: [
+      {
+        heading: 'Client:',
+        content: 'Halex (via Disruptive Art Studio)',
+      },
+      {
+        heading: 'Frontend Framework & Tools:',
+        content: `  <ul>
+                      <li>Vue 3</li>
+                      <li>Element Plus UI</li>
+                      <li>Axios</li>
+                    </ul>`,
+      },
+      {
+        heading: 'Backend Integration Stack:',
+        content: `  <ul>
+                      <li>.NET</li>
+                      <li>Docker</li>
+                    </ul>`,
+      },
+    ],
+    tags: ['Vue3', 'developer', 'designer'],
+    cardTags: ['Vue3', 'NodeJS', 'Express'],
+    image: 'portfolio-preview-kyc.jpg',
+    imageAlt: '',
+    cardImage: 'portfolio-preview-kyc.jpg',
+    cardImageAlt: '',
+    images: {
+      featured: {
+        src: 'portfolio-preview-kyc.jpg',
+      },
+      single: {
+        src: 'single-radium.jpg',
+      },
+      card: {
+        src: 'gallery-kyc-web-app-1.jpg',
+      },
+      gallery: [
+        {
+          src: 'gallery-radium.jpg',
         },
       ],
     },
