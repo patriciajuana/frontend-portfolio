@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
+import portfolioItemsMetadata from '@/data/portfolioItemsMetadata'
 import api from '@/mocks/api'
 import { resolveImagePath } from '@/utils/paths'
 import { onMounted, ref } from 'vue'
@@ -11,6 +12,7 @@ onMounted(() => {
 })
 
 const portfolioItem = ref()
+const metadata = ref()
 const getPortfolioItem = async () => {
   try {
     const response = await api.get('/portfolio-items', {
@@ -19,14 +21,31 @@ const getPortfolioItem = async () => {
       },
     })
     portfolioItem.value = response.data[0]
+
+    const meta = portfolioItemsMetadata.filter((e) => e.id === props.id)
+    metadata.value = meta[0] || []
   } catch (err) {
     console.log(err)
   }
 }
+const getSequentialImagePath = (count: number) => {
+  if (!portfolioItem.value.images?.gallery) return ''
+
+  const fileName = portfolioItem.value.images?.gallery[0].src
+  const lastDot = fileName.lastIndexOf('.')
+  const name = fileName.substring(0, lastDot)
+  const extension = fileName.substring(lastDot + 1)
+
+  return resolveImagePath(`${name}-${count}.${extension}`)
+}
 </script>
 
 <template>
-  <div v-if="portfolioItem" class="portfolio-view">
+  <div
+    v-if="portfolioItem"
+    class="portfolio-view"
+    :class="[`portfolio-view--${portfolioItem.id}`, metadata.modifiers]"
+  >
     <div class="portfolio-view__hero">
       <div class="container">
         <div class="portfolio-view__hero-layout row">
@@ -71,10 +90,31 @@ const getPortfolioItem = async () => {
         </div>
       </div>
     </div>
-    <div class="portfolio-view__body">
-      <section v-for="i in 3" :key="i" class="portfolio-view__item">
-        <img class="img-fluid" src="@/assets/images/kyc-web-app-placeholder.jpg" alt="" />
-      </section>
+    <div class="portfolio-view__gallery mt-3">
+      <div
+        :class="{
+          container: metadata.gallery.hasContainer,
+        }"
+      >
+        <ul v-if="portfolioItem.images?.gallery" class="list-unstyled">
+          <li
+            v-if="metadata.gallery.isSequential"
+            v-for="i in metadata.gallery.sequentialCount"
+            :key="i"
+            class="portfolio-view__gallery-item"
+          >
+            <img class="img-fluid" :src="getSequentialImagePath(i)" alt="" />
+          </li>
+          <li
+            v-else
+            v-for="item in portfolioItem.images?.gallery"
+            :key="item.src"
+            class="portfolio-view__gallery-item"
+          >
+            <img class="img-fluid" :src="resolveImagePath(item.src)" alt="" />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -95,7 +135,7 @@ const getPortfolioItem = async () => {
 .portfolio-view__hero-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 .portfolio-view__hero h1 {
   font-family: $font-broadacre-regular;
@@ -146,20 +186,31 @@ const getPortfolioItem = async () => {
 .portfolio-view__details dl > dd {
   font-weight: $font-weight-light;
 }
-.portfolio-view__item {
+.portfolio-view__gallery-item {
   position: relative;
 }
-.portfolio-view__item img {
+.portfolio-view__gallery-item img {
   width: 100%;
+  max-height: 700px;
   object-fit: contain;
 }
-.portfolio-view__item-description {
-  position: absolute;
-  top: map-get($spacers, 5);
-  left: 0;
-  width: 100%;
+
+//Modifiers: --2colgrid
+.portfolio-view--gallery2colgrid {
+  .portfolio-view__gallery ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
 }
-.portfolio-view__item-description p {
-  color: $white;
+
+//PortfolioItem Modifiers:
+.portfolio-view--kyc-web-app {
+  .portfolio-view__gallery img {
+    mask-image: linear-gradient(to top, transparent, red 20px);
+  }
 }
 </style>

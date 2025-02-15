@@ -17,14 +17,14 @@ const portfolioItems: PortfolioItemContent[] = [
       {
         heading: 'Frontend Framework & Tools:',
         content: `  <ul>
-                      <li>Vue3</li>
+                      <li>Vue 3</li>
                       <li>Vuetify</li>
                       <li>Pinia</li>                      
                       <li>Axios</li>
                     </ul>`,
       },
       {
-        heading: 'Backend/Middleware Tech Stack:',
+        heading: 'Middleware Tech Stack:',
         content: `  <ul>
                       <li>NodeJS / Express / JWT</li>
                       <li>Sharp</li>
@@ -47,8 +47,13 @@ const portfolioItems: PortfolioItemContent[] = [
         alt: 'test',
       },
       card: {
-        src: 'portfolio-preview-kyc.jpg',
+        src: 'gallery-kyc-web-app-1.jpg',
       },
+      gallery: [
+        {
+          src: 'gallery-kyc-web-app.jpg',
+        },
+      ],
     },
   },
   {
