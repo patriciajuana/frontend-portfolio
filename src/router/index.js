@@ -21,7 +21,10 @@ const router = createRouter({
       path: '/web-app-portfolios',
       name: 'web-app-portfolios',
       component: () => import('../views/PortfolioList.vue'),
-      props: (route) => ({ id: route.name }),
+      props: (route) => ({
+        id: route.name,
+        filters: ['Web App', 'WordPress', 'Design'],
+      }),
     },
     {
       path: '/kyc-web-app',

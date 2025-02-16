@@ -2,7 +2,7 @@
 import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 import { resolveImagePath } from '@/utils/paths'
 
-const props = defineProps<{ content: PortfolioItemContent }>()
+const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: string }>()
 </script>
 
 <template>
@@ -18,7 +18,16 @@ const props = defineProps<{ content: PortfolioItemContent }>()
         </h2>
         <p class="portfolio-card__subheading">{{ content.subheading }}</p>
         <ul v-if="content.cardTags" class="portfolio-card__tags list-unstyled">
-          <li v-for="(tag, i) in content.cardTags" :key="i">{{ tag }}</li>
+          <li v-for="(tag, i) in content.cardTags" :key="i">
+            <p
+              class="portfolio-card__tag mb-0"
+              :class="{
+                'is-highlighted': highlightedTag?.toLowerCase() === tag.toLowerCase(),
+              }"
+            >
+              {{ tag }}
+            </p>
+          </li>
         </ul>
       </div>
     </RouterLink>
@@ -100,16 +109,23 @@ const props = defineProps<{ content: PortfolioItemContent }>()
 }
 .portfolio-card__tags {
   display: flex;
-  transform: translateY(50px);
-  opacity: 0;
+  gap: map-get($spacers, 1);
+  //transform: translateY(50px);
+  //opacity: 0;
   transition:
     transform 0.8s $ease-expo-out,
     opacity 0.5s ease-out;
 }
-.portfolio-card__tags > li {
-  color: $white;
+.portfolio-card__tag {
+  color: rgba($white, 0.6);
+  border-radius: 4px;
+  border: 1px solid rgba($white, 0.5);
+  background-color: rgba($black, 0.5);
+  padding: 5px 10px;
 }
-.portfolio-card__tags > li:not(:first-child):before {
-  content: ', ';
+.portfolio-card__tag.is-highlighted {
+  background-color: $white;
+  border-color: $black;
+  color: $black;
 }
 </style>
