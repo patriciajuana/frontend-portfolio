@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 
 export interface HeaderNavItem {
   text: string
-  route?: string
+  route?: string | { name: string; params?: Record<string, any> }
   href?: string
   subitems?: HeaderNavItem[]
 }
@@ -14,15 +14,27 @@ const props = defineProps<{
 }>()
 
 const navItemHovered = ref()
-const setNavItemHovered = (id: string) => {
-  navItemHovered.value = id
+const setNavItemHovered = (navItem?: HeaderNavItem) => {
+  if (navItem) {
+    navItemHovered.value = JSON.stringify(navItem.route)
+  } else {
+    navItemHovered.value = ''
+  }
 }
 const isNavItemActive = (navItem: HeaderNavItem) => {
-  return navItemHovered.value === navItem.route || navItem.href
+  return navItemHovered.value === JSON.stringify(navItem.route)
 }
 
 const route = useRoute()
 const isNavItemCurrent = (navItem: HeaderNavItem) => {
+  if (!navItem) return
+
+  if (typeof navItem.route === 'object' && navItem.route.params?.filterBy) {
+    return (
+      route.name === navItem.route.name && route.params.filterBy === navItem.route.params?.filterBy
+    )
+  }
+
   return route.path === navItem.route
 }
 </script>
@@ -42,7 +54,7 @@ const isNavItemCurrent = (navItem: HeaderNavItem) => {
                 v-for="(item, i) in headerNavItems"
                 :key="i"
                 class="header__nav-list-item"
-                @mouseleave="setNavItemHovered('')"
+                @mouseleave="setNavItemHovered()"
               >
                 <RouterLink
                   v-if="item.route"
@@ -52,7 +64,7 @@ const isNavItemCurrent = (navItem: HeaderNavItem) => {
                     'is-active': isNavItemActive(item),
                     'is-current': isNavItemCurrent(item),
                   }"
-                  @mouseenter="setNavItemHovered(item.route || item.href || '')"
+                  @mouseenter="setNavItemHovered(item)"
                 >
                   {{ item.text }}
                   <i

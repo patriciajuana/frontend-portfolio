@@ -18,12 +18,12 @@ const router = createRouter({
       //component: () => import('../views/AboutView.vue'),
     },
     {
-      path: '/web-app-portfolios',
-      name: 'web-app-portfolios',
+      path: '/portfolios/:filterBy?',
+      name: 'portfolios',
       component: () => import('../views/PortfolioList.vue'),
       props: (route) => ({
-        id: route.name,
-        filters: ['Web App', 'WordPress', 'Design'],
+        filterBy: route.params.filterBy,
+        filters: ['web-app', 'wordpress', 'design'],
       }),
     },
     {

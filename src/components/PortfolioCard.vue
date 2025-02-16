@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { tagMap } from '@/data/tagMapData'
 import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 import { resolveImagePath } from '@/utils/paths'
 
@@ -25,7 +26,7 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
                 'is-highlighted': highlightedTag?.toLowerCase() === tag.toLowerCase(),
               }"
             >
-              {{ tag }}
+              {{ tagMap(tag) }}
             </p>
           </li>
         </ul>
@@ -110,8 +111,6 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
 .portfolio-card__tags {
   display: flex;
   gap: map-get($spacers, 1);
-  //transform: translateY(50px);
-  //opacity: 0;
   transition:
     transform 0.8s $ease-expo-out,
     opacity 0.5s ease-out;
@@ -124,8 +123,8 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
   padding: 5px 10px;
 }
 .portfolio-card__tag.is-highlighted {
-  background-color: $white;
-  border-color: $black;
-  color: $black;
+  background-color: $primary;
+  border-color: rgba($primary, 0.5);
+  color: $white;
 }
 </style>

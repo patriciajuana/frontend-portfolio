@@ -1,20 +1,28 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick, computed } from 'vue'
+import { ref, onMounted, nextTick, computed, watch } from 'vue'
 import Masonry from 'masonry-layout'
-import { apps } from '@/data/portfolioListData'
 import api from '@/mocks/api'
-import { resolveImagePath } from '@/utils/paths'
+import { tagMap } from '@/data/tagMapData'
 
-const props = defineProps<{ id: string; filters?: string[] }>()
+const props = defineProps<{ filterBy?: string; filters?: string[] }>()
 const grid = ref(null)
-const portfolioList = ref()
 const portfolioItems = ref()
 const masonry = ref()
 
 onMounted(async () => {
   await initData()
   initMasonry()
+
+  selectedTag.value = props.filterBy
+  filterList(selectedTag.value)
 })
+watch(
+  () => props.filterBy,
+  (e) => {
+    selectedTag.value = e
+    filterList(selectedTag.value)
+  },
+)
 
 const initData = async () => {
   portfolioItems.value = await getPortfolioItems()
@@ -88,9 +96,9 @@ const sortItemsByName = () => {
 
 const heading = computed(() => {
   if (selectedTag.value) {
-    return `${selectedTag.value} Portfolio`
+    return tagMap(selectedTag.value)
   }
-  return 'All Portfolio'
+  return 'All'
 })
 </script>
 
@@ -102,29 +110,30 @@ const heading = computed(() => {
           <div class="portfolio-list__header-arrow"></div>
         </div>
         <div class="col col-7">
-          <h1>{{ heading }}</h1>
+          <h1>
+            <span class="text-primary">{{ heading }}</span> Portfolio
+          </h1>
           <ul v-if="filters" class="list-unstyled d-flex gap-1 mt-4">
             <li>
-              <button
+              <RouterLink
+                :to="{ name: 'portfolios', params: { filterBy: '' } }"
                 class="portfolio-list__filter-button btn"
                 :class="selectedTag ? 'btn-outline-dark' : 'btn-dark'"
-                @click="filterList()"
+                >All</RouterLink
               >
-                All
-              </button>
             </li>
             <li v-for="item in filters" :key="item">
-              <button
+              <RouterLink
+                :to="{ name: 'portfolios', params: { filterBy: item } }"
                 class="portfolio-list__filter-button btn"
                 :class="
                   selectedTag?.toLowerCase() === item.toLowerCase()
                     ? 'btn-dark'
                     : 'btn-outline-dark'
                 "
-                @click="filterList(item)"
               >
-                {{ item }}
-              </button>
+                {{ tagMap(item) }}
+              </RouterLink>
             </li>
           </ul>
         </div>
