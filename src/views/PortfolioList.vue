@@ -50,6 +50,7 @@ const initMasonry = async () => {
 const getRandomCardHeight = () => {
   const heights = ['short', 'medium', 'tall']
   //const heights = ['medium', 'tall']
+  //const heights = ['short']
 
   return heights[Math.floor(Math.random() * heights.length)]
 }
@@ -139,7 +140,7 @@ const heading = computed(() => {
           </ul>
         </div>
       </div>
-      <ul class="portfolio-list__grid list-unstyled ps-0 mt-3" ref="grid">
+      <ul class="portfolio-list__grid list-unstyled ps-0 mt-6" ref="grid">
         <li
           v-for="item in portfolioItems"
           :key="item.id"
@@ -218,7 +219,7 @@ const heading = computed(() => {
   $max-height: 500px;
 
   &--short {
-    height: $max-height * 0.4;
+    height: $max-height * 0.5;
   }
 
   &--medium {

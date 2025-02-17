@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { tagMap } from '@/data/tagMapData'
 import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 import { resolveImagePath } from '@/utils/paths'
 import { computed } from 'vue'
@@ -20,7 +21,8 @@ const formattedCount = computed(() => {
 })
 
 const formattedTags = computed(() => {
-  return props.content.tags ? props.content.tags.join(', ') : ''
+  const tags = props.content.cardTags?.map((e) => tagMap(e))
+  return tags ? tags.join(', ') : ''
 })
 </script>
 
@@ -109,6 +111,7 @@ const formattedTags = computed(() => {
 .portfolio-item__tags {
   font-family: $font-oswald;
   font-weight: $font-weight-light;
+  text-transform: capitalize;
   color: $gray-600;
   position: absolute;
   right: 0;

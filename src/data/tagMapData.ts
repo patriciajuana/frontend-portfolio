@@ -6,6 +6,7 @@ const tagMapData: Record<string, string> = {
   nodejs: 'NodeJS',
   angular10: 'Angular 10',
   php: 'PHP',
+  'ui/ux': 'UI / UX',
 }
 
 export const tagMap = (tag: string) => {

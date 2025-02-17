@@ -37,17 +37,17 @@ const router = createRouter({
     },
     //WordPress
     {
-      path: '/:id(blackhawk-tire-website)',
+      path: '/:id(blackhawk-tire-website|sailun-tire-website|cypressfuneral-website|magiline-website)',
       name: 'wordpress-portfolio',
       component: PortfolioView,
       props: (route) => ({ id: route.params.id }),
     },
     //Design
     {
-      path: '/album-release-package',
-      name: 'album-release-package',
+      path: '/:id(album-release-package|restaurant-menu|technical-drawing|movie-poster|mobile-app)',
+      name: 'design-portfolio',
       component: PortfolioView,
-      props: (route) => ({ id: route.name }),
+      props: (route) => ({ id: route.params.id }),
     },
   ],
 })

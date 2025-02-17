@@ -55,26 +55,31 @@ const getSequentialImagePath = (count: number) => {
     <div class="portfolio-view__hero">
       <div class="container">
         <div class="portfolio-view__hero-layout row">
-          <div class="col col-5">
-            <h1>{{ portfolioItem.heading }}</h1>
-            <p class="portfolio-view__subheading mt-1">{{ portfolioItem.subheading }}</p>
-            <div class="portfolio-view__description my-3" v-html="portfolioItem.description"></div>
-            <ul
-              v-if="portfolioItem.links"
-              class="portfolio-view__links list-unstyled d-flex flex-wrap gap-2 ps-0"
-            >
-              <li v-for="(link, i) in portfolioItem.links" :key="i">
-                <a :href="link.href" :target="link.target">
-                  {{ link.text }}
-                  <i
-                    v-if="link.target && link.target === '_blank'"
-                    class="fas fa-external-link-alt"
-                  ></i>
-                </a>
-              </li>
-            </ul>
+          <div class="col col-4 d-flex align-items-center">
+            <div>
+              <h1>{{ portfolioItem.heading }}</h1>
+              <p class="portfolio-view__subheading mt-1">{{ portfolioItem.subheading }}</p>
+              <div
+                class="portfolio-view__description my-3"
+                v-html="portfolioItem.description"
+              ></div>
+              <ul
+                v-if="portfolioItem.links"
+                class="portfolio-view__links list-unstyled d-flex flex-wrap gap-2 ps-0"
+              >
+                <li v-for="(link, i) in portfolioItem.links" :key="i">
+                  <a :href="link.href" :target="link.target">
+                    {{ link.text }}
+                    <i
+                      v-if="link.target && link.target === '_blank'"
+                      class="fas fa-external-link-alt"
+                    ></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="portfolio-view__hero-image-section col col-7">
+          <div class="portfolio-view__hero-image-section col col-8">
             <div class="portfolio-view__hero-image">
               <img
                 class="img-fluid"
@@ -102,7 +107,7 @@ const getSequentialImagePath = (count: number) => {
           container: metadata?.gallery?.hasContainer,
         }"
       >
-        <ul v-if="portfolioItem.images?.gallery" class="list-unstyled">
+        <ul v-if="portfolioItem.images?.gallery" class="list-unstyled mb-0">
           <li
             v-if="metadata?.gallery?.isSequential"
             v-for="i in metadata.gallery.sequentialCount"
@@ -126,7 +131,8 @@ const getSequentialImagePath = (count: number) => {
 </template>
 
 <style scoped lang="scss">
-.portfolio-view__hero {
+.portfolio-view__hero-layout {
+  min-height: 600px;
 }
 .portfolio-view__hero-image-section {
   position: relative;
@@ -142,22 +148,25 @@ const getSequentialImagePath = (count: number) => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  mask-image: linear-gradient(-45deg, transparent, red 40%);
 }
 .portfolio-view__hero h1 {
   font-family: $font-broadacre-regular;
-  font-size: 80px;
+  font-size: 60px;
   text-transform: uppercase;
   line-height: 1;
 }
 .portfolio-view__subheading {
   font-family: $font-oswald;
   font-size: 30px;
+  line-height: 1.1;
   text-transform: uppercase;
   color: $primary;
 }
 .portfolio-view__description,
 .portfolio-view__description:deep(p) {
   font-weight: $font-weight-light;
+  font-size: 15px;
   line-height: 1.5;
 }
 .portfolio-view__links a {
@@ -184,7 +193,7 @@ const getSequentialImagePath = (count: number) => {
 .portfolio-view__details dl > dd ::v-deep(ul) {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 0;
   list-style-type: disc;
   list-style-position: inside;
   padding-left: 0;
@@ -211,6 +220,14 @@ const getSequentialImagePath = (count: number) => {
     @include media-breakpoint-down(sm) {
       grid-template-columns: 1fr;
     }
+  }
+}
+//Modifiers: --designgallery
+.portfolio-view--designgallery {
+  .portfolio-view__gallery-item img {
+    width: 100%;
+    max-height: none;
+    object-fit: cover;
   }
 }
 

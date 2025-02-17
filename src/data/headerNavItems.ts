@@ -27,11 +27,45 @@ const headerNavItems: HeaderNavItem[] = [
         route: '/blackhawk-tire-website',
         text: 'Blackhawk Tires',
       },
+      {
+        route: '/sailun-tire-website',
+        text: 'Sailun Tires',
+      },
+      {
+        route: '/cypressfuneral-website',
+        text: 'Cypress Funeral',
+      },
+      {
+        route: '/magiline-website',
+        text: 'Magiline',
+      },
     ],
   },
   {
     route: { name: 'portfolios', params: { filterBy: 'design' } },
     text: 'Design',
+    subitems: [
+      {
+        route: '/album-release-package',
+        text: 'Album Release Package',
+      },
+      {
+        route: '/restaurant-menu',
+        text: 'Restaurant Menu',
+      },
+      {
+        route: '/technical-drawing',
+        text: 'Technical Drawing',
+      },
+      {
+        route: '/movie-poster',
+        text: 'Movie Poster',
+      },
+      {
+        route: '/mobile-app',
+        text: 'Mobile App',
+      },
+    ],
   },
   {
     route: '/contact',

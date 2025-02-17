@@ -39,6 +39,8 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
 .portfolio-card {
   position: relative;
   overflow: clip;
+  border-radius: 4px;
+  // box-shadow: 0 4px 8px 4px rgba($black, 0.2);
 }
 .portfolio-card:hover {
   .portfolio-card__image img {
@@ -68,7 +70,7 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
     width: 100%;
     height: 100%;
     background: rgba($black, 0.8);
-    opacity: 0.2;
+    opacity: 0.3;
     transition: opacity 0.25s ease-out;
   }
 }
@@ -111,10 +113,14 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
 }
 .portfolio-card__tags {
   display: flex;
+  flex-wrap: wrap;
   gap: map-get($spacers, 1);
   transition:
     transform 0.8s $ease-expo-out,
     opacity 0.5s ease-out;
+
+  position: relative;
+  z-index: 0;
 }
 .portfolio-card__tag {
   color: rgba($white, 0.8);

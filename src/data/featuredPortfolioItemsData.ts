@@ -13,7 +13,7 @@ export default [
     catchHeading: 'Featured WordPress Portfolio',
     moreCTA: {
       route: { name: 'portfolios', params: { filterBy: 'wordpress' } },
-      text: 'More Wordpress Portfolios',
+      text: 'More WordPress Portfolios',
     },
   },
   {
