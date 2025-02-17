@@ -22,4 +22,11 @@ export default [
       sequentialCount: 7,
     },
   },
+  {
+    id: 'blackhawk-tire-website',
+    gallery: {
+      isSequential: true,
+      sequentialCount: 6,
+    },
+  },
 ]

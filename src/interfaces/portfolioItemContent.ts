@@ -15,10 +15,6 @@ export interface PortfolioItemContent {
   }[]
   tags?: string[]
   cardTags?: string[]
-  image: string
-  imageAlt: string
-  cardImage: string
-  cardImageAlt: string
   images?: {
     featured?: {
       src: string

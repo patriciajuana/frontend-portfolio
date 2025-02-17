@@ -7,7 +7,11 @@ const props = defineProps<{
   modifiers?: string
   content: PortfolioItemContent
   count: number
-  moreCTA?: { route: string; text: string }
+  catchHeading?: string
+  moreCTA?: {
+    route: string | { name: string; params?: Record<string, any> }
+    text: string
+  }
   isFeatured?: boolean
 }>()
 
@@ -66,10 +70,10 @@ const formattedTags = computed(() => {
             <img
               class="img-fluid"
               :src="resolveImagePath(props.content.images?.featured?.src)"
-              :alt="content.imageAlt"
+              alt=""
             />
             <p class="portfolio-item__tags">{{ formattedTags }}</p>
-            <p v-if="isFeatured" class="portfolio-item__featured">Featured Portfolio</p>
+            <p v-if="isFeatured" class="portfolio-item__featured" v-html="catchHeading"></p>
           </div>
         </div>
       </div>
@@ -150,7 +154,8 @@ const formattedTags = computed(() => {
 .portfolio-item__featured {
   font-size: 14px;
   font-weight: $font-weight-medium;
-  color: $gray-600;
+  //color: $gray-600;
+  color: $primary;
   text-transform: uppercase;
   position: absolute;
   top: calc(map-get($spacers, 5) * -1);
@@ -164,7 +169,8 @@ const formattedTags = computed(() => {
     content: '';
     width: 100%;
     height: 1px;
-    background-color: $gray-400;
+    //background-color: $gray-400;
+    background-color: currentColor;
     position: absolute;
     top: 50%;
     left: calc(100% - map-get($spacers, 8));
@@ -173,6 +179,8 @@ const formattedTags = computed(() => {
   }
 }
 .portfolio-item__description {
+  font-weight: $font-weight-light;
+
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Limit to 3 lines */
   -webkit-box-orient: vertical;
@@ -243,15 +251,6 @@ const formattedTags = computed(() => {
     &:after {
       //framing borders
       border-color: $gray-700;
-    }
-  }
-
-  .portfolio-item__featured {
-    color: $gray-500;
-
-    &:after {
-      //framing line
-      background-color: $gray-700;
     }
   }
 }

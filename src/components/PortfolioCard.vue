@@ -122,6 +122,7 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
   border: 1px solid rgba($white, 0.2);
   background-color: rgba($black, 1);
   padding: 5px 10px;
+  text-transform: capitalize;
 }
 .portfolio-card__tag.is-highlighted {
   background-color: $primary;

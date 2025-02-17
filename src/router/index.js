@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import PortfolioList from '@/views/PortfolioList.vue'
+import PortfolioView from '@/views/PortfolioView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,40 +22,31 @@ const router = createRouter({
     {
       path: '/portfolios/:filterBy?',
       name: 'portfolios',
-      component: () => import('../views/PortfolioList.vue'),
+      component: PortfolioList,
       props: (route) => ({
         filterBy: route.params.filterBy,
         filters: ['web-app', 'wordpress', 'design'],
       }),
     },
+    //Web Apps
     {
-      path: '/kyc-web-app',
-      name: 'kyc-web-app',
-      component: () => import('../views/PortfolioView.vue'),
-      props: (route) => ({ id: route.name }),
+      path: '/:id(kyc-web-app|kyc-admin|radium)',
+      name: 'web-apps-portfolio',
+      component: PortfolioView,
+      props: (route) => ({ id: route.params.id }),
     },
+    //WordPress
     {
-      path: '/kyc-admin',
-      name: 'kyc-admin',
-      component: () => import('../views/PortfolioView.vue'),
-      props: (route) => ({ id: route.name }),
+      path: '/:id(blackhawk-tire-website)',
+      name: 'wordpress-portfolio',
+      component: PortfolioView,
+      props: (route) => ({ id: route.params.id }),
     },
-    {
-      path: '/radium',
-      name: 'radium',
-      component: () => import('../views/PortfolioView.vue'),
-      props: (route) => ({ id: route.name }),
-    },
-    {
-      path: '/blackhawk-tire-website',
-      name: 'blackhawk-tire-website',
-      component: () => import('../views/PortfolioView.vue'),
-      props: (route) => ({ id: route.name }),
-    },
+    //Design
     {
       path: '/album-release-package',
       name: 'album-release-package',
-      component: () => import('../views/PortfolioView.vue'),
+      component: PortfolioView,
       props: (route) => ({ id: route.name }),
     },
   ],

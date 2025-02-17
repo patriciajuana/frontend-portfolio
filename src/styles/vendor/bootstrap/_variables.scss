@@ -54,7 +54,9 @@ $font-weight-semibold: 600 !default;
 $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
 
-$line-height-base: 1.2 !default;
+$line-height-base: 1.5 !default;
+$line-height-sm: 1.25 !default;
+$line-height-lg: 2 !default;
 
 // scss-docs-start headings-variables
 $headings-font-family: $font-broadacre-regular !default;

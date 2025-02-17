@@ -34,6 +34,7 @@ const contentData = (id: string) => {
           :modifiers="item.modifiers"
           :content="contentData(item.id)"
           :count="i + 1"
+          :catchHeading="item.catchHeading"
           :moreCTA="item.moreCTA"
         ></PortfolioItem>
       </section>

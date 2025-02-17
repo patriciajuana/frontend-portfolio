@@ -9,11 +9,25 @@ const headerNavItems: HeaderNavItem[] = [
         route: '/kyc-web-app',
         text: 'KYC Web App',
       },
+      {
+        route: '/kyc-admin',
+        text: 'KYC Admin',
+      },
+      {
+        route: '/radium',
+        text: 'Radium',
+      },
     ],
   },
   {
     route: { name: 'portfolios', params: { filterBy: 'wordpress' } },
     text: 'WordPress',
+    subitems: [
+      {
+        route: '/blackhawk-tire-website',
+        text: 'Blackhawk Tires',
+      },
+    ],
   },
   {
     route: { name: 'portfolios', params: { filterBy: 'design' } },

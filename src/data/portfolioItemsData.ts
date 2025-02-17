@@ -1,6 +1,7 @@
 import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 
 const portfolioItems: PortfolioItemContent[] = [
+  //Web Apps
   {
     id: 'kyc-web-app',
     heading: 'KYC Web App',
@@ -32,14 +33,10 @@ const portfolioItems: PortfolioItemContent[] = [
       },
     ],
     tags: ['vue3', 'developer', 'designer'],
-    cardTags: ['web-app', 'Vue3', 'NodeJS', 'Express'],
-    image: 'portfolio-preview-kyc.jpg',
-    imageAlt: '',
-    cardImage: 'portfolio-preview-kyc.jpg',
-    cardImageAlt: '',
+    cardTags: ['web-app', 'vue3', 'nodejs', 'express'],
     images: {
       featured: {
-        src: 'portfolio-preview-kyc.jpg',
+        src: 'featured-kyc-web-app.jpg',
       },
       single: {
         src: 'single-kyc-web-app.jpg',
@@ -98,16 +95,9 @@ const portfolioItems: PortfolioItemContent[] = [
                     </ul>`,
       },
     ],
-    tags: ['angular 10', 'developer', 'designer'],
-    cardTags: ['web-app', 'Angular 10', 'NodeJS', 'Express'],
-    image: 'portfolio-preview-kyc.jpg',
-    imageAlt: '',
-    cardImage: 'portfolio-preview-kyc.jpg',
-    cardImageAlt: '',
+    tags: ['angular10', 'developer', 'designer'],
+    cardTags: ['web-app', 'angular10', 'nodejs', 'express'],
     images: {
-      featured: {
-        src: 'portfolio-preview-kyc.jpg',
-      },
       single: {
         src: 'single-kyc-admin.jpg',
         alt: 'test',
@@ -167,15 +157,8 @@ const portfolioItems: PortfolioItemContent[] = [
       },
     ],
     tags: ['Vue3', 'developer', 'designer'],
-    cardTags: ['web-app', 'Vue3', 'NodeJS', 'Express'],
-    image: 'portfolio-preview-kyc.jpg',
-    imageAlt: '',
-    cardImage: 'portfolio-preview-kyc.jpg',
-    cardImageAlt: '',
+    cardTags: ['web-app', 'vue3', 'nodejs', 'express'],
     images: {
-      featured: {
-        src: 'portfolio-preview-kyc.jpg',
-      },
       single: {
         src: 'single-radium.jpg',
       },
@@ -189,6 +172,7 @@ const portfolioItems: PortfolioItemContent[] = [
       ],
     },
   },
+  //WordPress
   {
     id: 'blackhawk-tire-website',
     modifier: '',
@@ -201,11 +185,6 @@ const portfolioItems: PortfolioItemContent[] = [
         text: 'Visit the Website',
         target: '_blank',
       },
-      {
-        href: 'https://blackhawktirecanada.ca/en-ca/plt/',
-        text: 'Visit the Website',
-        target: '_blank',
-      },
     ],
     details: [
       {
@@ -213,22 +192,41 @@ const portfolioItems: PortfolioItemContent[] = [
         content: 'Blackhawk Tire (via Disruptive Art Studio)',
       },
       {
-        heading: 'Highlighted Tech Stack:',
+        heading: 'Frontend Framework & Tools:',
         content: `  <ul>
-                      <li>Wordpress</li>
-                      <li>Vue2</li>
-                      <li>Bootstrap</li>
+                      <li>Wordpress / PHP</li>
+                      <li>Vue 2 — Tire Finder Widget</li>
+                      <li>Bootstrap / SCSS</li>
                       <li>Docker</li>
                     </ul>`,
       },
+      {
+        heading: 'Design Tools:',
+        content: `  <ul>
+                      <li>Figma</li>
+                      <li>Photoshop / Illustrator</li>                      
+                    </ul>`,
+      },
     ],
-    tags: ['developer', 'designer'],
-    cardTags: ['WordPress', 'Vue2', 'Docker'],
-    image: 'portfolio-preview-bh.jpg',
-    imageAlt: '',
-    cardImage: 'portfolio-preview-bh.jpg',
-    cardImageAlt: '',
+    cardTags: ['wordpress', 'php', 'vue2', 'docker'],
+    images: {
+      featured: {
+        src: 'featured-blackhawk-tire-website.jpg',
+      },
+      single: {
+        src: 'single-blackhawk-tire-website.jpg',
+      },
+      card: {
+        src: 'card-blackhawk-tire-website.jpg',
+      },
+      gallery: [
+        {
+          src: 'gallery-blackhawk-tire-website.jpg',
+        },
+      ],
+    },
   },
+  //Design
   {
     id: 'album-release-package',
     modifier: 'portfolio-item--reverse portfolio-item--dark',
@@ -274,6 +272,22 @@ const portfolioItems: PortfolioItemContent[] = [
     imageAlt: '',
     cardImage: 'portfolio-preview-album.jpg',
     cardImageAlt: '',
+    images: {
+      featured: {
+        src: 'featured-blackhawk-tire-website.jpg',
+      },
+      single: {
+        src: 'single-radium.jpg',
+      },
+      card: {
+        src: 'card-radium.jpg',
+      },
+      gallery: [
+        {
+          src: 'gallery-radium.jpg',
+        },
+      ],
+    },
   },
 ]
 

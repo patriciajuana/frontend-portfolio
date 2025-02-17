@@ -3,13 +3,19 @@ import { PortfolioItemContent } from '@/interfaces/portfolioItemContent'
 import portfolioItemsMetadata from '@/data/portfolioItemsMetadata'
 import api from '@/mocks/api'
 import { resolveImagePath } from '@/utils/paths'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 const props = defineProps<{ id: string }>()
 
 onMounted(() => {
   getPortfolioItem()
 })
+watch(
+  () => props.id,
+  () => {
+    getPortfolioItem()
+  },
+)
 
 const portfolioItem = ref()
 const metadata = ref()
@@ -191,7 +197,8 @@ const getSequentialImagePath = (count: number) => {
 }
 .portfolio-view__gallery-item img {
   width: 100%;
-  max-height: 700px;
+  //max-height: 700px;
+  max-height: 100vh;
   object-fit: contain;
 }
 
