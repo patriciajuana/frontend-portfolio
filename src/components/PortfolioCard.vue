@@ -10,7 +10,7 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
   <article class="portfolio-card">
     <RouterLink :to="`/${content.id}`">
       <div class="portfolio-card__image">
-        <img :src="resolveImagePath(content.cardImage)" :alt="content.cardImageAlt" />
+        <img :src="resolveImagePath(content.images?.card?.src)" :alt="content.images?.card?.alt" />
       </div>
       <div class="portfolio-card__content">
         <h2>
@@ -68,13 +68,14 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
     width: 100%;
     height: 100%;
     background: rgba($black, 0.8);
-    opacity: 0;
+    opacity: 0.2;
     transition: opacity 0.25s ease-out;
   }
 }
 .portfolio-card__image img {
   width: 100%;
   height: 100%;
+  object-position: center top;
   object-fit: cover;
   transition: transform 0.25s ease-out;
 }
@@ -116,10 +117,10 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
     opacity 0.5s ease-out;
 }
 .portfolio-card__tag {
-  color: rgba($white, 0.6);
+  color: rgba($white, 0.8);
   border-radius: 4px;
-  border: 1px solid rgba($white, 0.5);
-  background-color: rgba($black, 0.5);
+  border: 1px solid rgba($white, 0.2);
+  background-color: rgba($black, 1);
   padding: 5px 10px;
 }
 .portfolio-card__tag.is-highlighted {

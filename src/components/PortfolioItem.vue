@@ -21,7 +21,7 @@ const formattedTags = computed(() => {
 </script>
 
 <template>
-  <div class="portfolio-item pt-12 pb-4" :class="modifiers">
+  <div class="portfolio-item pt-12 pb-8" :class="modifiers">
     <div class="container">
       <div class="portfolio-item__layout row">
         <div class="portfolio-item__body col-6">

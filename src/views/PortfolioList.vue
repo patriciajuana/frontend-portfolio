@@ -49,6 +49,7 @@ const initMasonry = async () => {
 
 const getRandomCardHeight = () => {
   const heights = ['short', 'medium', 'tall']
+  //const heights = ['medium', 'tall']
 
   return heights[Math.floor(Math.random() * heights.length)]
 }
@@ -118,7 +119,7 @@ const heading = computed(() => {
               <RouterLink
                 :to="{ name: 'portfolios', params: { filterBy: '' } }"
                 class="portfolio-list__filter-button btn"
-                :class="selectedTag ? 'btn-outline-dark' : 'btn-dark'"
+                :class="selectedTag ? 'btn-outline-dark' : 'btn-primary'"
                 >All</RouterLink
               >
             </li>
@@ -128,7 +129,7 @@ const heading = computed(() => {
                 class="portfolio-list__filter-button btn"
                 :class="
                   selectedTag?.toLowerCase() === item.toLowerCase()
-                    ? 'btn-dark'
+                    ? 'btn-primary'
                     : 'btn-outline-dark'
                 "
               >
@@ -143,7 +144,7 @@ const heading = computed(() => {
           v-for="item in portfolioItems"
           :key="item.id"
           class="js-grid-item portfolio-list__grid-item"
-          :class="`portfolio-list__grid-item--${getRandomCardHeight()}`"
+          :class="[`portfolio-list__grid-item--${getRandomCardHeight()}`]"
         >
           <PortfolioCard :content="item" :highlightedTag="selectedTag"></PortfolioCard>
         </li>

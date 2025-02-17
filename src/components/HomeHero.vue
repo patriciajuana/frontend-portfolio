@@ -16,16 +16,16 @@
                 <span class="d-block text-primary">Manager,</span>
               </h1>
               <p>
-                I’m reaching out to express my extremely professional level of excitement about the
-                Front End Developer position. I stalked the posting on your website in a totally
-                non-creepy way, and couldn’t help but notice that my skills and experience line up
-                almost too perfectly with what you're looking for.
+                I’m reaching out to express my <strong>extremely professional</strong> level of
+                excitement about the Front End Developer position. I stalked the posting on your
+                website in a totally non-creepy way, and couldn’t help but notice that my skills and
+                experience line up almost too perfectly with what you're looking for.
               </p>
               <p>
-                I’m a creative front-end developer ninja with a legendary amount of experience,
-                whipping up visually stunning and user-friendly interfaces and slaying projects left
-                and right like there is no tomorrow. HTML, CSS, and JavaScript? Please. I devour
-                those before my morning coffee.
+                I’m a creative <strong>front-end developer ninja</strong> with a legendary amount of
+                experience, whipping up visually stunning and user-friendly interfaces and slaying
+                projects left and right like there is no tomorrow. HTML, CSS, and JavaScript?
+                Please. I devour those before my morning coffee.
               </p>
               <p>
                 I’m not just a developer. Not just a designer. I’m the full package: a well-oiled
@@ -34,18 +34,18 @@
                 impossible look easy (and possibly even fun).
               </p>
               <p>You’d be lucky to have me on your team!</p>
-              <p>
+              <!-- <p>
                 Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
                 Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
                 Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
                 Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
                 Please hire me.
-              </p>
+              </p> -->
               <p class="mt-5">Sincerely,<br />Patrick John Pacana</p>
             </div>
-            <div class="home-hero__catch-text">
-              <p>Please Please Please Please</p>
-            </div>
+            <!-- <div class="home-hero__catch-text">
+              <p>You Will Hire Me</p>
+            </div> -->
           </div>
         </div>
       </div>
@@ -81,6 +81,9 @@
   font-size: 18px;
   color: $secondary;
   line-height: 1.3;
+}
+.home-hero p strong {
+  color: $black;
 }
 .home-hero__catch-text {
   position: relative;

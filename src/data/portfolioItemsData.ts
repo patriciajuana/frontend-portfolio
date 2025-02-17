@@ -46,7 +46,7 @@ const portfolioItems: PortfolioItemContent[] = [
         alt: 'test',
       },
       card: {
-        src: 'gallery-kyc-web-app-1.jpg',
+        src: 'card-kyc-web-app.jpg',
       },
       gallery: [
         {
@@ -98,7 +98,7 @@ const portfolioItems: PortfolioItemContent[] = [
                     </ul>`,
       },
     ],
-    tags: ['angular', 'developer', 'designer'],
+    tags: ['angular 10', 'developer', 'designer'],
     cardTags: ['web-app', 'Angular 10', 'NodeJS', 'Express'],
     image: 'portfolio-preview-kyc.jpg',
     imageAlt: '',
@@ -113,7 +113,7 @@ const portfolioItems: PortfolioItemContent[] = [
         alt: 'test',
       },
       card: {
-        src: 'gallery-kyc-web-app-1.jpg',
+        src: 'card-kyc-admin.jpg',
       },
       gallery: [
         {
@@ -180,7 +180,7 @@ const portfolioItems: PortfolioItemContent[] = [
         src: 'single-radium.jpg',
       },
       card: {
-        src: 'gallery-kyc-web-app-1.jpg',
+        src: 'card-radium.jpg',
       },
       gallery: [
         {
