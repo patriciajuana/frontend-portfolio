@@ -4,12 +4,12 @@
   <div class="home-hero">
     <div class="container">
       <div class="row justify-content-between">
-        <div class="home-hero__image-column col-5">
+        <div class="home-hero__image-column col-12 col-lg-5">
           <img class="img-fluid" src="@/assets/images/home-hero.png" alt="" />
         </div>
-        <div class="col-6">
+        <div class="col-12 col-lg-6">
           <div class="d-flex flex-column">
-            <div>
+            <div class="pb-3">
               <h1 class="mb-3">
                 <span class="d-inline-block">Dear </span>
                 <span class="d-block text-primary">Hiring </span>
@@ -34,18 +34,8 @@
                 impossible look easy (and possibly even fun).
               </p>
               <p>You’d be lucky to have me on your team!</p>
-              <!-- <p>
-                Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
-                Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
-                Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
-                Please hire me. Please hire me. Please hire me. Please hire me. Please hire me.
-                Please hire me.
-              </p> -->
               <p class="mt-5">Sincerely,<br />Patrick John Pacana</p>
             </div>
-            <!-- <div class="home-hero__catch-text">
-              <p>You Will Hire Me</p>
-            </div> -->
           </div>
         </div>
       </div>
@@ -58,7 +48,10 @@
   font-size: 120px;
   line-height: 1;
   text-transform: uppercase;
-  margin-top: calc(map-get($spacers, 9) - 5px);
+
+  @include media-breakpoint-down(xl) {
+    font-size: 80px;
+  }
 }
 .home-hero h1 > span:first-child {
   position: relative;
@@ -128,6 +121,10 @@
     z-index: -1;
     transform-origin: right;
     transform: scaleX(10);
+
+    @include media-breakpoint-down(xl) {
+      left: map-get($spacers, 4);
+    }
   }
 }
 </style>

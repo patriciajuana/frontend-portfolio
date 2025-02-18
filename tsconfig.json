@@ -12,8 +12,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
-    // "allowJs": true, // Allow JS files
+    "resolveJsonModule": true,
+    "allowJs": true // Allow JS files
     // "checkJs": false // Optional: Disable JS checking
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "src/router/index.js"]

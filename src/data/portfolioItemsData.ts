@@ -89,7 +89,7 @@ const portfolioItems: PortfolioItemContent[] = [
       {
         heading: 'Middleware Tech Stack:',
         content: `  <ul>
-                      <li>NodeJS / Express</li>                      
+                      <li>NodeJS / Express / Express-Session</li>                      
                       <li>Docker / PM2</li>
                     </ul>`,
       },

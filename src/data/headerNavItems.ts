@@ -1,4 +1,4 @@
-import type { HeaderNavItem } from '@/components/Header.vue'
+import { HeaderNavItem } from '@/interfaces/headerNavItem'
 
 const headerNavItems: HeaderNavItem[] = [
   {

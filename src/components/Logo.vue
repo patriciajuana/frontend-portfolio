@@ -28,5 +28,9 @@ const imageSrc = computed(() => {
 <style scoped lang="scss">
 .logo {
   width: 150px;
+
+  @include media-breakpoint-down(md) {
+    width: 120px;
+  }
 }
 </style>

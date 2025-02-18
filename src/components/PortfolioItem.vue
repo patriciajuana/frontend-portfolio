@@ -87,12 +87,20 @@ const formattedTags = computed(() => {
 .portfolio-item h2 {
   font-size: 80px;
   line-height: 1;
+
+  @include media-breakpoint-down(xl) {
+    font-size: 50px;
+  }
 }
 .portfolio-item__subheading {
   font-family: $font-oswald;
   font-size: 30px;
   text-transform: uppercase;
   color: $primary;
+
+  @include media-breakpoint-down(xl) {
+    font-size: 25px;
+  }
 }
 .portfolio-item__count {
   font-family: $font-oswald;

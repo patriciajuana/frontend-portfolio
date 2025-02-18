@@ -43,13 +43,6 @@ const contentData = (id: string) => {
 </template>
 
 <style scoped lang="scss">
-.home-view__featured > section:first-child {
-  margin-top: -72px;
-
-  ::v-deep(.portfolio-item) {
-    padding-top: map-get($spacers, 20) !important;
-  }
-}
 .home-view__featured > section:last-child {
   ::v-deep(.portfolio-item) {
     padding-bottom: map-get($spacers, 10) !important;
