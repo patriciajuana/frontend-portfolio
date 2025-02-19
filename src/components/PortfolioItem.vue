@@ -147,6 +147,7 @@ const formattedTags = computed(() => {
     height: 100%;
     border-right: 1px solid $gray-200;
     border-bottom: 1px solid $gray-200;
+    pointer-events: none;
 
     @include media-breakpoint-down(md) {
       display: none;

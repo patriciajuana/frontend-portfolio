@@ -15,6 +15,7 @@ declare module 'vue' {
     Logo: typeof import('./components/Logo.vue')['default']
     MobileNav: typeof import('./components/MobileNav.vue')['default']
     Nav: typeof import('./components/Nav.vue')['default']
+    NavLink: typeof import('./components/NavLink.vue')['default']
     PortfolioCard: typeof import('./components/PortfolioCard.vue')['default']
     PortfolioItem: typeof import('./components/PortfolioItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

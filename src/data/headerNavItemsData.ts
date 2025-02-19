@@ -73,19 +73,16 @@ const headerNavItems: NavItem[] = [
       {
         route: 'mailto:patriciajuana@gmail.com',
         text: 'patriciajuana@gmail.com',
-        target: '_blank',
         iconClass: 'fa-regular fa-envelope',
       },
       {
         route: 'https://www.linkedin.com/in/patrickpacana/',
         text: 'LinkedIn',
-        target: '_blank',
         iconClass: 'fa-brands fa-linkedin',
       },
       {
         route: 'https://github.com/patriciajuana/frontend-portfolio',
         text: 'Github',
-        target: '_blank',
         iconClass: 'fa-brands fa-github',
       },
     ],

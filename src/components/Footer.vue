@@ -18,24 +18,11 @@ const props = defineProps<{
           <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-4">
             <div v-for="(item, i) in footerNavItems" :key="i">
               <h2>
-                <RouterLink v-if="item.route" :to="item.route">
-                  {{ item.text }}
-                </RouterLink>
-                <span v-else>{{ item.text }}</span>
+                <NavLink :to="item.route">{{ item.text }}</NavLink>
               </h2>
               <ul v-if="item.subitems?.length" class="d-flex flex-column list-unstyled mt-1">
                 <li v-for="(subitem, j) in item.subitems" :key="j">
-                  <a
-                    v-if="subitem.href"
-                    :href="subitem.href"
-                    target="_blank"
-                    v-html="subitem.text"
-                  ></a>
-                  <RouterLink
-                    v-if="subitem.route"
-                    :to="subitem.route"
-                    v-html="subitem.text"
-                  ></RouterLink>
+                  <NavLink :to="subitem.route">{{ subitem.text }}</NavLink>
                 </li>
               </ul>
             </div>
@@ -51,10 +38,10 @@ const props = defineProps<{
             class="footer__contact list-unstyled d-flex flex-column flex-lg-row gap-1 gap-lg-2 mb-0"
           >
             <li v-for="(contactSubItem, j) in footerContactItem?.subitems" :key="j">
-              <RouterLink :to="contactSubItem.route || '#'" :target="contactSubItem.target">
+              <NavLink :to="contactSubItem.route" class="d-flex align-items-center gap-1">
                 <span>{{ contactSubItem.text }}</span>
                 <i v-if="contactSubItem.iconClass" :class="contactSubItem.iconClass"></i>
-              </RouterLink>
+              </NavLink>
             </li>
           </ul>
           <small class="footer__copyright mt-3 mt-lg-0">© 2023 Patrick John Pacaña</small>
@@ -72,14 +59,19 @@ const props = defineProps<{
   gap: 5px;
 }
 .footer nav h2,
-.footer nav h2 a,
-.footer nav li a {
+.footer nav h2 ::v-deep(a),
+.footer nav li ::v-deep(a) {
   font-family: $font-broadacre-regular;
   font-size: 14px;
   text-decoration: none;
   color: $gray-400;
 }
-.footer nav li a {
+
+.footer nav h2 ::v-deep(a):hover {
+  color: $primary;
+}
+
+.footer nav li ::v-deep(a) {
   font-family: $font-broadacre-light;
   font-size: 12px;
 
@@ -93,7 +85,7 @@ const props = defineProps<{
 .footer__contact {
   gap: 5px;
 }
-.footer__contact a {
+.footer__contact ::v-deep(a) {
   font-family: $font-oswald;
   font-size: 14px;
   text-transform: lowercase;
@@ -101,7 +93,7 @@ const props = defineProps<{
   text-decoration: none;
   transition: color 0.25s ease-out;
 }
-.footer__contact a:hover {
+.footer__contact ::v-deep(a):hover {
   color: $primary;
   text-decoration: none;
 

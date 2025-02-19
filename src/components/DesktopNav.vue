@@ -44,8 +44,8 @@ const isNavItemCurrent = (navItem: NavItem) => {
         class="desktop-nav__list-item"
         @mouseleave="setNavItemHovered()"
       >
-        <RouterLink
-          :to="item.route || '#'"
+        <NavLink
+          :to="item.route"
           class="desktop-nav__link d-flex align-items-center gap-1 p-2"
           :class="{
             'is-active': isNavItemActive(item),
@@ -56,7 +56,7 @@ const isNavItemCurrent = (navItem: NavItem) => {
           {{ item.text }}
           <i v-if="item.subitems?.length && !isNavItemActive(item)" class="fa fa-plus-square"></i>
           <i v-if="item.subitems?.length && isNavItemActive(item)" class="far fa-minus-square"></i>
-        </RouterLink>
+        </NavLink>
         <!-- Sub Navigation Items -->
         <div
           v-if="item.subitems?.length"
@@ -68,13 +68,13 @@ const isNavItemCurrent = (navItem: NavItem) => {
           <ul class="desktop-nav__submenu-list list-unstyled mb-0 d-flex flex-column gap-1">
             <li v-for="(subitem, j) in item.subitems" :key="j">
               <div class="desktop-nav__subitem">
-                <RouterLink
+                <NavLink
                   :to="subitem.route || '#'"
                   class="desktop-nav__subitem-nav-link d-inline-flex align-items-center gap-1"
                 >
                   <i v-if="subitem.iconClass" :class="subitem.iconClass"></i>
                   {{ subitem.text }}
-                </RouterLink>
+                </NavLink>
               </div>
             </li>
           </ul>
@@ -98,22 +98,27 @@ const isNavItemCurrent = (navItem: NavItem) => {
   }
 }
 
-.desktop-nav__link,
-.desktop-nav__subitem-nav-link {
+::v-deep(.desktop-nav__link),
+::v-deep(.desktop-nav__subitem-nav-link) {
   font-family: $font-broadacre-light;
   font-size: 14px;
   text-decoration: none;
   color: $black;
 }
-.desktop-nav__subitem-nav-link {
+::v-deep(.desktop-nav__subitem-nav-link) {
   font-size: 12px;
   color: $white;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 }
 
-.desktop-nav__link.is-active {
+::v-deep(.desktop-nav__link).is-active {
   color: $primary;
 }
-.desktop-nav__link.is-current {
+::v-deep(.desktop-nav__link).is-current {
   color: $primary;
 }
 

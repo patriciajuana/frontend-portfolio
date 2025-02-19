@@ -3,5 +3,4 @@ export interface NavItem {
   route?: string | { name: string; params?: Record<string, any> }
   subitems?: NavItem[]
   iconClass?: string
-  target?: string
 }
