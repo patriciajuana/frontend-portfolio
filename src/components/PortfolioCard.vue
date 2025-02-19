@@ -72,6 +72,11 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
     background: rgba($black, 0.8);
     opacity: 0.3;
     transition: opacity 0.25s ease-out;
+
+    @include media-breakpoint-down(xl) {
+      opacity: 1;
+      background: linear-gradient(45deg, rgba($black, 1) 25%, transparent);
+    }
   }
 }
 .portfolio-card__image img {
@@ -89,6 +94,11 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
   transition:
     transform 0.8s $ease-expo-out,
     opacity 0.5s ease-out;
+
+  @include media-breakpoint-down(xl) {
+    opacity: 1;
+    transform: none;
+  }
 }
 .portfolio-card h2 i {
   font-size: 14px;
@@ -104,6 +114,11 @@ const props = defineProps<{ content: PortfolioItemContent; highlightedTag?: stri
   transition:
     transform 0.8s $ease-expo-out,
     opacity 0.5s ease-out;
+
+  @include media-breakpoint-down(xl) {
+    opacity: 1;
+    transform: none;
+  }
 }
 .portfolio-card__content {
   position: absolute;

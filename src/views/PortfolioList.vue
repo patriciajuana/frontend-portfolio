@@ -105,17 +105,20 @@ const heading = computed(() => {
 </script>
 
 <template>
-  <div class="portfolio-list">
+  <div class="portfolio-list mt-8 mt-md-4 mt-lg-0">
     <div class="container">
       <div class="portfolio-list__header row justify-content-between">
-        <div class="col col-4">
+        <div class="col col-xl-4 d-none d-xl-block">
           <div class="portfolio-list__header-arrow"></div>
         </div>
-        <div class="col col-7">
+        <div class="col col-12 col-xl-7">
           <h1>
             <span class="text-primary">{{ heading }}</span> Portfolio
           </h1>
-          <ul v-if="filters" class="list-unstyled d-flex gap-1 mt-4">
+          <ul
+            v-if="filters"
+            class="list-unstyled d-flex flex-column flex-md-row flex-wrap gap-1 mt-2 mt-lg-4"
+          >
             <li>
               <RouterLink
                 :to="{ name: 'portfolios', params: { filterBy: '' } }"
@@ -140,7 +143,7 @@ const heading = computed(() => {
           </ul>
         </div>
       </div>
-      <ul class="portfolio-list__grid list-unstyled ps-0 mt-6" ref="grid">
+      <ul class="portfolio-list__grid list-unstyled ps-0 mt-2 mt-lg-6" ref="grid">
         <li
           v-for="item in portfolioItems"
           :key="item.id"
@@ -161,19 +164,12 @@ const heading = computed(() => {
   text-transform: uppercase;
   position: relative;
 
-  /*
-  &:after {
-    //framing
-    content: '';
-    position: absolute;
-    top: 20px;
-    left: 100%;
-    width: 100%;
-    height: 90px;
-    background-color: $gray-100;
-    display: none;
+  @include media-breakpoint-down(xl) {
+    font-size: 80px;
   }
-  */
+  @include media-breakpoint-down(md) {
+    font-size: 50px;
+  }
 }
 .portfolio-list__header-arrow {
   //background-color: red;
@@ -214,16 +210,32 @@ const heading = computed(() => {
 .portfolio-list__grid-item {
   width: calc((100% - 40px) / 3);
   margin-bottom: 20px;
+
+  @include media-breakpoint-down(xl) {
+    width: calc((100% - 40px) / 2);
+  }
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
 }
 .portfolio-list__grid-item {
   $max-height: 500px;
 
   &--short {
     height: $max-height * 0.5;
+
+    @include media-breakpoint-down(md) {
+      height: $max-height;
+    }
   }
 
   &--medium {
     height: $max-height * 0.7;
+
+    @include media-breakpoint-down(md) {
+      height: $max-height;
+    }
   }
 
   &--tall {
