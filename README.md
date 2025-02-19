@@ -1,6 +1,6 @@
 # frontend-portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+This is my personal frontend portfolio, built with Vue 3 to showcase my skills, projects, and experience in web development. The site is designed for performance, responsiveness, and a smooth user experience.
 
 ## Recommended IDE Setup
 

@@ -1,26 +1,27 @@
 <script setup lang="ts">
-import { HeaderNavItem } from '@/interfaces/headerNavItem'
+import { NavItem } from '@/interfaces/navItem'
+import { resolveImagePath } from '@/utils/paths'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const props = defineProps<{
-  headerNavItems: HeaderNavItem[]
+  navItems: NavItem[]
 }>()
 
 const navItemHovered = ref()
-const setNavItemHovered = (navItem?: HeaderNavItem) => {
+const setNavItemHovered = (navItem?: NavItem) => {
   if (navItem) {
     navItemHovered.value = JSON.stringify(navItem.route)
   } else {
     navItemHovered.value = ''
   }
 }
-const isNavItemActive = (navItem: HeaderNavItem) => {
+const isNavItemActive = (navItem: NavItem) => {
   return navItemHovered.value === JSON.stringify(navItem.route)
 }
 
 const route = useRoute()
-const isNavItemCurrent = (navItem: HeaderNavItem) => {
+const isNavItemCurrent = (navItem: NavItem) => {
   if (!navItem) return
 
   if (typeof navItem.route === 'object' && navItem.route.params?.filterBy) {
@@ -38,14 +39,13 @@ const isNavItemCurrent = (navItem: HeaderNavItem) => {
     <!-- Main Navigation Items -->
     <ul class="desktop-nav__list list-unstyled mb-0 d-flex">
       <li
-        v-for="(item, i) in headerNavItems"
+        v-for="(item, i) in navItems"
         :key="i"
         class="desktop-nav__list-item"
         @mouseleave="setNavItemHovered()"
       >
         <RouterLink
-          v-if="item.route"
-          :to="item.route"
+          :to="item.route || '#'"
           class="desktop-nav__link d-flex align-items-center gap-1 p-2"
           :class="{
             'is-active': isNavItemActive(item),
@@ -67,19 +67,15 @@ const isNavItemCurrent = (navItem: HeaderNavItem) => {
         >
           <ul class="desktop-nav__submenu-list list-unstyled mb-0 d-flex flex-column gap-1">
             <li v-for="(subitem, j) in item.subitems" :key="j">
-              <a
-                v-if="subitem.href"
-                class="desktop-nav__subitem-nav-link"
-                :href="subitem.href"
-                target="_blank"
-                v-html="subitem.text"
-              ></a>
-              <RouterLink
-                v-if="subitem.route"
-                :to="subitem.route"
-                class="desktop-nav__subitem-nav-link"
-                v-html="subitem.text"
-              ></RouterLink>
+              <div class="desktop-nav__subitem">
+                <RouterLink
+                  :to="subitem.route || '#'"
+                  class="desktop-nav__subitem-nav-link d-inline-flex align-items-center gap-1"
+                >
+                  <i v-if="subitem.iconClass" :class="subitem.iconClass"></i>
+                  {{ subitem.text }}
+                </RouterLink>
+              </div>
             </li>
           </ul>
         </div>

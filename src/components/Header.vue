@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { HeaderNavItem } from '@/interfaces/headerNavItem'
+import { NavItem } from '@/interfaces/navItem'
 import { ref } from 'vue'
 
 const props = defineProps<{
-  headerNavItems: HeaderNavItem[]
+  headerNavItems: NavItem[]
 }>()
 
 const isMobileNavActive = ref(false)
@@ -20,7 +20,7 @@ const toggleMobileNav = () => {
           <Logo></Logo>
         </div>
         <div class="header__desktop-nav">
-          <DesktopNav :headerNavItems="headerNavItems"></DesktopNav>
+          <DesktopNav :nav-items="headerNavItems"></DesktopNav>
         </div>
         <div class="header__burger">
           <Burger @click="toggleMobileNav()"></Burger>
@@ -32,7 +32,7 @@ const toggleMobileNav = () => {
           'is-active': isMobileNavActive,
         }"
       >
-        <MobileNav :headerNavItems="headerNavItems"></MobileNav>
+        <MobileNav :nav-items="headerNavItems"></MobileNav>
       </div>
     </div>
   </header>

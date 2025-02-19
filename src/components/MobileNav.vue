@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { HeaderNavItem } from '@/interfaces/headerNavItem'
+import { NavItem } from '@/interfaces/navItem'
 
 const props = defineProps<{
-  headerNavItems: HeaderNavItem[]
+  navItems: NavItem[]
 }>()
 </script>
 
@@ -11,7 +11,7 @@ const props = defineProps<{
     <!-- Main Navigation Items -->
     <div class="container">
       <ul class="mobile-nav__list list-unstyled mb-0">
-        <li v-for="(item, i) in headerNavItems" :key="i" class="mobile-nav__list-item">
+        <li v-for="(item, i) in navItems" :key="i" class="mobile-nav__list-item">
           <div class="mobile-nav__item">
             <RouterLink v-if="item.route" :to="item.route" class="mobile-nav__link">{{
               item.text

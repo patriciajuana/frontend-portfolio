@@ -1,6 +1,6 @@
-import { HeaderNavItem } from '@/interfaces/headerNavItem'
+import { NavItem } from '@/interfaces/navItem'
 
-const headerNavItems: HeaderNavItem[] = [
+const headerNavItems: NavItem[] = [
   {
     route: { name: 'portfolios', params: { filterBy: 'web-app' } },
     text: 'Web Apps',
@@ -68,20 +68,25 @@ const headerNavItems: HeaderNavItem[] = [
     ],
   },
   {
-    route: '/contact',
     text: 'Contact',
     subitems: [
       {
-        href: 'mailto:patriciajuana@gmail.com',
-        text: '<div class="d-flex align-items-center gap-1"><i class="fas fa-envelope"></i> patriciajuana@gmail.com</div>',
+        route: 'mailto:patriciajuana@gmail.com',
+        text: 'patriciajuana@gmail.com',
+        target: '_blank',
+        iconClass: 'fa-regular fa-envelope',
       },
       {
-        href: 'mailto:patriciajuana@gmail.com',
-        text: '<div class="d-flex align-items-center gap-1"><i class="fas fa-envelope"></i> patriciajuana@gmail.com</div>',
+        route: 'https://www.linkedin.com/in/patrickpacana/',
+        text: 'LinkedIn',
+        target: '_blank',
+        iconClass: 'fa-brands fa-linkedin',
       },
       {
-        href: 'mailto:patriciajuana@gmail.com',
-        text: '<div class="d-flex align-items-center gap-1"><i class="fas fa-envelope"></i> patriciajuana@gmail.com</div>',
+        route: 'https://github.com/patriciajuana/frontend-portfolio',
+        text: 'Github',
+        target: '_blank',
+        iconClass: 'fa-brands fa-github',
       },
     ],
   },

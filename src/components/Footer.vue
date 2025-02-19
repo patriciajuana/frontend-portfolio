@@ -1,19 +1,41 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { NavItem } from '@/interfaces/navItem'
+
+const props = defineProps<{
+  footerNavItems: NavItem[]
+  footerContactItem?: NavItem
+}>()
+</script>
 
 <template>
   <div class="footer pt-4">
     <div class="container">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex flex-column flex-lg-row gap-4 gap-lg-0 justify-content-between">
         <div>
           <Logo type="dark"></Logo>
         </div>
         <nav>
-          <div class="d-flex gap-4">
-            <div v-for="i in 3" :key="i">
-              <h2>Web Apps</h2>
-              <ul class="d-flex flex-column list-unstyled mt-1">
-                <li v-for="j in 3" :key="j">
-                  <RouterLink to="/">Album Release Package</RouterLink>
+          <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-4">
+            <div v-for="(item, i) in footerNavItems" :key="i">
+              <h2>
+                <RouterLink v-if="item.route" :to="item.route">
+                  {{ item.text }}
+                </RouterLink>
+                <span v-else>{{ item.text }}</span>
+              </h2>
+              <ul v-if="item.subitems?.length" class="d-flex flex-column list-unstyled mt-1">
+                <li v-for="(subitem, j) in item.subitems" :key="j">
+                  <a
+                    v-if="subitem.href"
+                    :href="subitem.href"
+                    target="_blank"
+                    v-html="subitem.text"
+                  ></a>
+                  <RouterLink
+                    v-if="subitem.route"
+                    :to="subitem.route"
+                    v-html="subitem.text"
+                  ></RouterLink>
                 </li>
               </ul>
             </div>
@@ -23,16 +45,19 @@
     </div>
     <div class="footer__copy-block mt-3 py-2">
       <div class="container">
-        <div class="d-flex align-items-center justify-content-between">
-          <ul class="footer__social list-unstyled d-flex gap-2 mb-0">
-            <li v-for="j in 3" :key="j">
-              <a class="d-inline-flex align-items-center gap-1" href="#" target="_blank">
-                patriciajuana@gmail.com
-                <i><img class="img-fluid" src="@/assets/images/icon-mail.svg" alt="" /></i>
-              </a>
+        <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between">
+          <ul
+            v-if="footerContactItem?.subitems"
+            class="footer__contact list-unstyled d-flex flex-column flex-lg-row gap-1 gap-lg-2 mb-0"
+          >
+            <li v-for="(contactSubItem, j) in footerContactItem?.subitems" :key="j">
+              <RouterLink :to="contactSubItem.route || '#'" :target="contactSubItem.target">
+                <span>{{ contactSubItem.text }}</span>
+                <i v-if="contactSubItem.iconClass" :class="contactSubItem.iconClass"></i>
+              </RouterLink>
             </li>
           </ul>
-          <small class="footer__copyright">© 2023 Patrick John Pacaña</small>
+          <small class="footer__copyright mt-3 mt-lg-0">© 2023 Patrick John Pacaña</small>
         </div>
       </div>
     </div>
@@ -47,6 +72,7 @@
   gap: 5px;
 }
 .footer nav h2,
+.footer nav h2 a,
 .footer nav li a {
   font-family: $font-broadacre-regular;
   font-size: 14px;
@@ -64,34 +90,29 @@
     text-underline-offset: 3px;
   }
 }
-.footer__social {
+.footer__contact {
   gap: 5px;
 }
-.footer__social a {
+.footer__contact a {
   font-family: $font-oswald;
   font-size: 14px;
+  text-transform: lowercase;
   color: #afafaf;
   text-decoration: none;
   transition: color 0.25s ease-out;
 }
-.footer__social a:hover {
+.footer__contact a:hover {
   color: $primary;
-  text-decoration: underline;
+  text-decoration: none;
+
+  span {
+    text-decoration: underline;
+  }
 
   i {
+    text-decoration: none;
     transform: none;
   }
-  i img {
-    transform: scale(0.9);
-  }
-}
-.footer__social i {
-  transform: rotate(90deg) translateX(2px);
-  transition: transform 0.25s ease-out;
-}
-.footer__social i img {
-  width: 18px;
-  transition: transform 0.25s ease-out;
 }
 .footer__copyright {
   font-size: 12px;
