@@ -52,6 +52,9 @@
   @include media-breakpoint-down(xl) {
     font-size: 80px;
   }
+  @include media-breakpoint-down(md) {
+    font-size: 50px;
+  }
 }
 .home-hero h1 > span:first-child {
   position: relative;
@@ -67,6 +70,10 @@
     background-color: $gray-100;
     transform-origin: left;
     transform: scaleX(10);
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
 }
 .home-hero p {

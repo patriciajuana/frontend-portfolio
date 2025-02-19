@@ -27,12 +27,12 @@ const formattedTags = computed(() => {
 </script>
 
 <template>
-  <div class="portfolio-item pt-12 pb-8" :class="modifiers">
+  <div class="portfolio-item pt-0 pb-4 pt-lg-12 pb-lg-8" :class="modifiers">
     <div class="container">
-      <div class="portfolio-item__layout row">
-        <div class="portfolio-item__body col-6">
+      <div class="portfolio-item__layout row flex-column-reverse flex-lg-row">
+        <div class="portfolio-item__body col-12 col-lg-6">
           <h2>{{ content.heading }}</h2>
-          <p class="portfolio-item__subheading mb-3">{{ content.subheading }}</p>
+          <p class="portfolio-item__subheading mb-1 mb-lg-3">{{ content.subheading }}</p>
           <div class="portfolio-item__description mb-2" v-html="content.description"></div>
           <ul v-if="content.links" class="list-unstyled d-flex gap-2">
             <li v-for="(link, i) in content.links" :key="i">
@@ -45,7 +45,7 @@ const formattedTags = computed(() => {
               </a>
             </li>
           </ul>
-          <div class="portfolio-item__sub row mt-4">
+          <div class="portfolio-item__sub row mt-2 mt-lg-4">
             <div class="col-lg-1"></div>
             <div class="col-lg-11">
               <p class="portfolio-item__count">
@@ -53,10 +53,10 @@ const formattedTags = computed(() => {
               </p>
               <div class="portfolio-item__details mt-3">
                 <dl v-for="(detail, i) in content.details" :key="i" class="row">
-                  <dt class="col-3">{{ detail.heading }}</dt>
-                  <dd class="col" v-html="detail.content"></dd>
+                  <dt class="col col-12 col-lg-3">{{ detail.heading }}</dt>
+                  <dd class="col mt-1 mt-lg-0" v-html="detail.content"></dd>
                 </dl>
-                <div class="portfolio-item__cta d-flex gap-1">
+                <div class="portfolio-item__cta d-flex flex-wrap gap-1">
                   <RouterLink :to="`/${content.id}`" class="btn btn-secondary">Details</RouterLink>
                   <RouterLink v-if="moreCTA" :to="moreCTA.route" class="btn btn-primary">
                     {{ moreCTA.text }}
@@ -67,7 +67,7 @@ const formattedTags = computed(() => {
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="portfolio-item__image-column col-12 col-lg-6">
           <div class="portfolio-item__image">
             <img
               class="img-fluid"
@@ -91,6 +91,9 @@ const formattedTags = computed(() => {
   @include media-breakpoint-down(xl) {
     font-size: 50px;
   }
+  @include media-breakpoint-down(md) {
+    font-size: 40px;
+  }
 }
 .portfolio-item__subheading {
   font-family: $font-oswald;
@@ -100,6 +103,9 @@ const formattedTags = computed(() => {
 
   @include media-breakpoint-down(xl) {
     font-size: 25px;
+  }
+  @include media-breakpoint-down(md) {
+    font-size: 22px;
   }
 }
 .portfolio-item__count {
@@ -127,6 +133,10 @@ const formattedTags = computed(() => {
   padding-right: map-get($spacers, 5);
   padding-bottom: map-get($spacers, 1);
 
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+
   &:after {
     //framing borders
     content: '';
@@ -137,6 +147,10 @@ const formattedTags = computed(() => {
     height: 100%;
     border-right: 1px solid $gray-200;
     border-bottom: 1px solid $gray-200;
+
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
   }
 }
 .portfolio-item__link {
@@ -149,6 +163,10 @@ const formattedTags = computed(() => {
 .portfolio-item__details dl > dt {
   font-weight: $font-weight-semibold;
 }
+.portfolio-item__details dl > dd {
+  font-weight: $font-weight-light;
+}
+
 .portfolio-item__details dl > dd ::v-deep(ul) {
   display: flex;
   flex-direction: column;
@@ -174,6 +192,10 @@ const formattedTags = computed(() => {
   width: 100%;
   text-align: right;
   padding-right: map-get($spacers, 10);
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 
   &:after {
     //framing line
@@ -203,35 +225,37 @@ const formattedTags = computed(() => {
 
 //Modifiers: --reverse
 .portfolio-item--reverse {
-  .portfolio-item__layout.row {
-    flex-direction: row-reverse;
-  }
-
-  .portfolio-item__tags {
-    left: 0;
-    bottom: 0;
-    padding-right: 0;
-    padding-left: map-get($spacers, 5);
-
-    &:after {
-      //framing borders
-      top: 0;
-      left: 0;
-      border-left: 1px solid $gray-200;
-      border-right: 0;
+  @include media-breakpoint-up(md) {
+    .portfolio-item__layout.row {
+      flex-direction: row-reverse !important;
     }
-  }
 
-  .portfolio-item__featured {
-    text-align: left;
-    padding-right: 0;
-    padding-left: map-get($spacers, 10);
+    .portfolio-item__tags {
+      left: 0;
+      bottom: 0;
+      padding-right: 0;
+      padding-left: map-get($spacers, 5);
 
-    &:after {
-      //framing line
-      left: unset;
-      right: calc(100% - map-get($spacers, 8));
-      transform-origin: right;
+      &:after {
+        //framing borders
+        top: 0;
+        left: 0;
+        border-left: 1px solid $gray-200;
+        border-right: 0;
+      }
+    }
+
+    .portfolio-item__featured {
+      text-align: left;
+      padding-right: 0;
+      padding-left: map-get($spacers, 10);
+
+      &:after {
+        //framing line
+        left: unset;
+        right: calc(100% - map-get($spacers, 8));
+        transform-origin: right;
+      }
     }
   }
 }

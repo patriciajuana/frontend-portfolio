@@ -42,10 +42,4 @@ const contentData = (id: string) => {
   </main>
 </template>
 
-<style scoped lang="scss">
-.home-view__featured > section:last-child {
-  ::v-deep(.portfolio-item) {
-    padding-bottom: map-get($spacers, 10) !important;
-  }
-}
-</style>
+<style scoped lang="scss"></style>
