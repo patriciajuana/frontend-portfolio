@@ -1,16 +1,16 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="home-hero">
+  <div class="home-hero mt-8 mt-lg-0">
     <div class="container">
-      <div class="row justify-content-between">
-        <div class="home-hero__image-column col-12 col-lg-5">
+      <div class="home-hero__layout row justify-content-between flex-row-reverse flex-lg-row">
+        <div class="home-hero__image-column col col-lg-5">
           <img class="img-fluid" src="@/assets/images/home-hero.png" alt="" />
         </div>
-        <div class="col-12 col-lg-6">
-          <div class="d-flex flex-column">
+        <div class="col col-12 col-lg-6">
+          <div class="home-hero__body d-flex flex-column">
             <div class="pb-3">
-              <h1 class="mb-3">
+              <h1 class="mb-1 mb-lg-3">
                 <span class="d-inline-block">Dear </span>
                 <span class="d-block text-primary">Hiring </span>
                 <span class="d-block text-primary">Manager,</span>
@@ -44,6 +44,22 @@
 </template>
 
 <style scoped lang="scss">
+.home-hero > .container {
+  @include media-breakpoint-down(md) {
+    padding-right: 0;
+  }
+}
+
+.home-hero__layout {
+  position: relative;
+}
+
+.home-hero__body {
+  @include media-breakpoint-down(md) {
+    width: 60%;
+  }
+}
+
 .home-hero h1 {
   font-size: 120px;
   line-height: 1;
@@ -81,6 +97,10 @@
   font-size: 18px;
   color: $secondary;
   line-height: 1.3;
+
+  @include media-breakpoint-down(md) {
+    font-size: 14px;
+  }
 }
 .home-hero p strong {
   color: $black;
@@ -116,6 +136,17 @@
   position: relative;
   z-index: 0;
 
+  @include media-breakpoint-down(md) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translateX(50%);
+    z-index: -1;
+    mask-image: linear-gradient(to right, transparent, red 20%);
+  }
+
   &:before {
     //underlay
     content: '';
@@ -131,6 +162,9 @@
 
     @include media-breakpoint-down(xl) {
       left: map-get($spacers, 4);
+    }
+    @include media-breakpoint-down(md) {
+      display: none;
     }
   }
 }

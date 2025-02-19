@@ -52,6 +52,7 @@ $z-burger: 30;
     top: 0;
     left: 0;
     width: 100%;
+    background-color: $white;
   }
 }
 

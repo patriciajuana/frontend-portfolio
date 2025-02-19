@@ -10,12 +10,12 @@ const props = defineProps<{
   <div class="mobile-nav" id="js-mobile-nav-accordion">
     <!-- Main Navigation Items -->
     <div class="container">
-      <ul class="mobile-nav__list list-unstyled mb-0">
+      <ul class="mobile-nav__list list-unstyled d-flex flex-column gap-1 mb-0">
         <li v-for="(item, i) in navItems" :key="i" class="mobile-nav__list-item">
-          <div class="mobile-nav__item">
-            <RouterLink v-if="item.route" :to="item.route" class="mobile-nav__link">{{
-              item.text
-            }}</RouterLink>
+          <div
+            class="mobile-nav__item d-flex align-items-center justify-content-between gap-2 mb-1"
+          >
+            <NavLink :to="item.route" class="mobile-nav__link">{{ item.text }}</NavLink>
             <div
               v-if="item.subitems?.length"
               class="mobile-nav__accordion-toggle"
@@ -35,19 +35,9 @@ const props = defineProps<{
           >
             <ul class="list-unstyled ps-2 py-1">
               <li v-for="(subitem, j) in item.subitems" :key="j">
-                <a
-                  v-if="subitem.href"
-                  class="mobile-nav__subitem-nav-link"
-                  :href="subitem.href"
-                  target="_blank"
-                  v-html="subitem.text"
-                ></a>
-                <RouterLink
-                  v-if="subitem.route"
-                  :to="subitem.route"
-                  class="mobile-nav__subitem-nav-link"
-                  v-html="subitem.text"
-                ></RouterLink>
+                <NavLink :to="subitem.route" class="mobile-nav__subitem-nav-link">
+                  {{ subitem.text }}
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -69,46 +59,16 @@ const props = defineProps<{
   padding-top: 100px;
 }
 
-.mobile-nav__list-item:not(:first-child) {
-  position: relative;
-
-  &:before {
-    //framing line
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-top: 1px solid rgba($black, 0.1);
-    transform: scaleX(10);
-    pointer-events: none;
-    display: none;
-  }
-}
-.mobile-nav__item {
-  display: flex;
-  justify-content: space-between;
-  gap: map-get($spacers, 2);
-
-  > * {
-    //border: 1px solid red;
-  }
-}
-
-.mobile-nav__link,
-.mobile-nav__subitem-nav-link {
+::v-deep(.mobile-nav__link),
+::v-deep(.mobile-nav__subitem-nav-link) {
   font-family: $font-broadacre-light;
   font-size: 14px;
   text-decoration: none;
   color: $black;
 }
-.mobile-nav__subitem-nav-link {
+::v-deep(.mobile-nav__subitem-nav-link) {
   font-size: 12px;
   color: $white;
-}
-
-.mobile-nav__item > a {
-  flex: 0 1 auto;
-  padding: map-get($spacers, 1) 0;
 }
 
 .mobile-nav__subitems {
@@ -140,7 +100,6 @@ const props = defineProps<{
 }
 .mobile-nav__accordion-toggle i {
   color: $black;
-  transform: translateY(12px);
 }
 .mobile-nav__accordion-icon-closed,
 .mobile-nav__accordion-icon-open {
