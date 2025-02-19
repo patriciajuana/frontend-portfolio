@@ -53,7 +53,7 @@ const formattedTags = computed(() => {
               </p>
               <div class="portfolio-item__details mt-3">
                 <dl v-for="(detail, i) in content.details" :key="i" class="row">
-                  <dt class="col col-12 col-lg-3">{{ detail.heading }}</dt>
+                  <dt class="col col-12 col-md-3">{{ detail.heading }}</dt>
                   <dd class="col mt-1 mt-lg-0" v-html="detail.content"></dd>
                 </dl>
                 <div class="portfolio-item__cta d-flex flex-wrap gap-1">
@@ -194,7 +194,7 @@ const formattedTags = computed(() => {
   text-align: right;
   padding-right: map-get($spacers, 10);
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     display: none;
   }
 
@@ -226,7 +226,7 @@ const formattedTags = computed(() => {
 
 //Modifiers: --reverse
 .portfolio-item--reverse {
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     .portfolio-item__layout.row {
       flex-direction: row-reverse !important;
     }

@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import { NavItem } from '@/interfaces/navItem'
-import { resolveImagePath } from '@/utils/paths'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const props = defineProps<{
   navItems: NavItem[]
 }>()
 
-const navItemHovered = ref()
+const isTouchDevice = computed(() => {
+  return navigator.maxTouchPoints === 0 ? false : true
+})
+
+const navItemHovered = ref('')
 const setNavItemHovered = (navItem?: NavItem) => {
   if (navItem) {
     navItemHovered.value = JSON.stringify(navItem.route)
@@ -16,7 +19,8 @@ const setNavItemHovered = (navItem?: NavItem) => {
     navItemHovered.value = ''
   }
 }
-const isNavItemActive = (navItem: NavItem) => {
+const isNavItemActive = (navItem?: NavItem) => {
+  if (!navItem) return
   return navItemHovered.value === JSON.stringify(navItem.route)
 }
 
@@ -32,6 +36,23 @@ const isNavItemCurrent = (navItem: NavItem) => {
 
   return route.path === navItem.route
 }
+
+//
+const navLinkMouseHandler = (navItem?: NavItem) => {
+  //console.log('t', isTouchDevice.value)
+  if (isTouchDevice.value) return
+  setNavItemHovered(navItem)
+}
+const subMenuToggleClickHandler = (navItem?: NavItem) => {
+  //console.log('t', isTouchDevice.value)
+  if (!isTouchDevice.value) return
+
+  if (!isNavItemActive(navItem)) {
+    setNavItemHovered(navItem)
+  } else {
+    setNavItemHovered()
+  }
+}
 </script>
 
 <template>
@@ -42,21 +63,28 @@ const isNavItemCurrent = (navItem: NavItem) => {
         v-for="(item, i) in navItems"
         :key="i"
         class="desktop-nav__list-item"
-        @mouseleave="setNavItemHovered()"
+        @mouseleave="navLinkMouseHandler()"
       >
-        <NavLink
-          :to="item.route"
-          class="desktop-nav__link d-flex align-items-center gap-1 p-2"
-          :class="{
-            'is-active': isNavItemActive(item),
-            'is-current': isNavItemCurrent(item),
-          }"
-          @mouseenter="setNavItemHovered(item)"
-        >
-          {{ item.text }}
-          <i v-if="item.subitems?.length && !isNavItemActive(item)" class="fa fa-plus-square"></i>
-          <i v-if="item.subitems?.length && isNavItemActive(item)" class="far fa-minus-square"></i>
-        </NavLink>
+        <div class="d-flex align-items-center gap-1 p-2">
+          <NavLink
+            :to="item.route"
+            class="desktop-nav__link"
+            :class="{
+              'is-active': isNavItemActive(item),
+              'is-current': isNavItemCurrent(item),
+            }"
+            @mouseenter="navLinkMouseHandler(item)"
+          >
+            {{ item.text }}
+          </NavLink>
+          <div class="desktop-nav__submenu-toggle" @click="subMenuToggleClickHandler(item)">
+            <i v-if="item.subitems?.length && !isNavItemActive(item)" class="fa fa-plus-square"></i>
+            <i
+              v-if="item.subitems?.length && isNavItemActive(item)"
+              class="far fa-minus-square"
+            ></i>
+          </div>
+        </div>
         <!-- Sub Navigation Items -->
         <div
           v-if="item.subitems?.length"
@@ -69,11 +97,11 @@ const isNavItemCurrent = (navItem: NavItem) => {
             <li v-for="(subitem, j) in item.subitems" :key="j">
               <div class="desktop-nav__subitem">
                 <NavLink
-                  :to="subitem.route || '#'"
+                  :to="subitem.route"
                   class="desktop-nav__subitem-nav-link d-inline-flex align-items-center gap-1"
                 >
                   <i v-if="subitem.iconClass" :class="subitem.iconClass"></i>
-                  {{ subitem.text }}
+                  <span>{{ subitem.text }}</span>
                 </NavLink>
               </div>
             </li>
@@ -110,8 +138,10 @@ const isNavItemCurrent = (navItem: NavItem) => {
   color: $white;
 
   &:hover {
-    text-decoration: underline;
-    text-underline-offset: 2px;
+    span {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
   }
 }
 
@@ -167,5 +197,9 @@ const isNavItemCurrent = (navItem: NavItem) => {
     transform: scaleX(10) translateX(0);
     transition: transform 0.5s $ease-expo-out;
   }
+}
+
+.desktop-nav__submenu-toggle {
+  transform: translateY(2px);
 }
 </style>

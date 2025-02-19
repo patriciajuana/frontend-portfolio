@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="home-hero mt-8 mt-lg-0">
+  <div class="home-hero mt-8 mt-md-4 mt-lg-0">
     <div class="container">
       <div class="home-hero__layout row justify-content-between flex-row-reverse flex-lg-row">
         <div class="home-hero__image-column col col-lg-5">
@@ -55,7 +55,7 @@
 }
 
 .home-hero__body {
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     width: 60%;
   }
 }
@@ -87,7 +87,7 @@
     transform-origin: left;
     transform: scaleX(10);
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
       display: none;
     }
   }
@@ -136,7 +136,7 @@
   position: relative;
   z-index: 0;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     position: absolute;
     top: 0;
     left: 0;

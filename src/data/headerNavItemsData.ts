@@ -72,7 +72,7 @@ const headerNavItems: NavItem[] = [
     subitems: [
       {
         route: 'mailto:patriciajuana@gmail.com',
-        text: 'patriciajuana@gmail.com',
+        text: 'Email',
         iconClass: 'fa-regular fa-envelope',
       },
       {

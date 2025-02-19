@@ -6,14 +6,15 @@ const attrs = useAttrs()
 
 const isExternal = computed(() => {
   if (typeof props.to !== 'string') return false
-  props.to.startsWith('http')
+
+  return !props.to.startsWith('/')
 })
 </script>
 
 <template>
   <template v-if="to">
     <template v-if="isExternal">
-      <a :href="String(to)" target="_blank">
+      <a v-bind="attrs" :href="String(to)" target="_blank">
         <slot />
       </a>
     </template>

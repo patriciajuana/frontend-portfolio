@@ -77,7 +77,7 @@ $z-burger: 30;
   transform: translateY(-4px);
   z-index: $z-burger;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     display: block;
   }
 }
@@ -89,7 +89,7 @@ $z-burger: 30;
     width: auto;
   }
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     display: none;
   }
 }
