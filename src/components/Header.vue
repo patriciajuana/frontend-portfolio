@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { HeaderNavItem } from '@/interfaces/headerNavItem'
-import { PropType, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 
 const props = defineProps<{
   headerNavItems: HeaderNavItem[]
 }>()
+
+const isMobileNavActive = ref(false)
+const toggleMobileNav = () => {
+  isMobileNavActive.value = isMobileNavActive.value ? false : true
+}
 </script>
 
 <template>
@@ -15,24 +19,40 @@ const props = defineProps<{
         <div class="header__logo">
           <Logo></Logo>
         </div>
-        <div class="header__nav">
+        <div class="header__desktop-nav">
           <DesktopNav :headerNavItems="headerNavItems"></DesktopNav>
         </div>
         <div class="header__burger">
-          <Burger></Burger>
+          <Burger @click="toggleMobileNav()"></Burger>
         </div>
-        <div class="header__mobile-nav">
-          <MobileNav :headerNavItems="headerNavItems"></MobileNav>
-        </div>
+      </div>
+      <div
+        class="header__mobile-nav"
+        :class="{
+          'is-active': isMobileNavActive,
+        }"
+      >
+        <MobileNav :headerNavItems="headerNavItems"></MobileNav>
       </div>
     </div>
   </header>
 </template>
 
 <style scoped lang="scss">
+$z-mobile-nav: 10;
+$z-logo: 20;
+$z-burger: 30;
+
 .header {
   position: relative;
   z-index: 100;
+
+  @include media-breakpoint-down(md) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
 }
 
 .header__layout {
@@ -44,23 +64,41 @@ const props = defineProps<{
   //   border: 1px solid red;
   // }
 }
-.header__burger {
-  transform: translateY(-4px);
+
+.header__logo {
+  position: relative;
+  z-index: $z-logo;
 }
-.header__nav {
+
+.header__burger {
+  display: none;
+  position: relative;
+  transform: translateY(-4px);
+  z-index: $z-burger;
+
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+}
+
+.header__desktop-nav {
   width: 50%;
 
   @include media-breakpoint-down(xl) {
     width: auto;
   }
+
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
 }
 
-.header__logo {
-  position: relative;
-  z-index: 20;
-}
 .header__mobile-nav {
   position: relative;
-  z-index: 10;
+  z-index: $z-mobile-nav;
+  display: none;
+}
+.header__mobile-nav.is-active {
+  display: block;
 }
 </style>

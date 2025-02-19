@@ -63,6 +63,7 @@ const props = defineProps<{
   top: 0;
   left: 0;
   width: 100vw;
+  height: 100vh;
   //background-color: #2d2d2d;
   background-color: rgba($white, 0.9);
   padding-top: 100px;
@@ -148,7 +149,7 @@ const props = defineProps<{
 .mobile-nav__accordion-toggle[aria-expanded='true'] .mobile-nav__accordion-icon-open {
   display: block;
 }
-.mobile-nav__accordion-toggle[aria-expanded='false'] .mobile-nav__accordion-icon-closed {
+.mobile-nav__accordion-toggle:not([aria-expanded='true']) .mobile-nav__accordion-icon-closed {
   display: block;
 }
 </style>
