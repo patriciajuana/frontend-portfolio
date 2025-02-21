@@ -11,7 +11,7 @@ const masonry = ref()
 
 onMounted(async () => {
   await initData()
-  initMasonry()
+  await initMasonry()
 
   selectedTag.value = props.filterBy
   filterList(selectedTag.value)
@@ -219,28 +219,24 @@ const heading = computed(() => {
     width: 100%;
   }
 }
-.portfolio-list__grid-item {
-  $max-height: 500px;
 
-  &--short {
-    height: $max-height * 0.5;
+$max-height: 500px;
+.portfolio-list__grid-item--short {
+  height: $max-height * 0.5;
 
-    @include media-breakpoint-down(md) {
-      height: $max-height;
-    }
-  }
-
-  &--medium {
-    height: $max-height * 0.7;
-
-    @include media-breakpoint-down(md) {
-      height: $max-height;
-    }
-  }
-
-  &--tall {
+  @include media-breakpoint-down(md) {
     height: $max-height;
   }
+}
+.portfolio-list__grid-item--medium {
+  height: $max-height * 0.7;
+
+  @include media-breakpoint-down(md) {
+    height: $max-height;
+  }
+}
+.portfolio-list__grid-item--tall {
+  height: $max-height;
 }
 
 .portfolio-list__grid-item {
