@@ -54,8 +54,7 @@ const props = defineProps<{
   left: 0;
   width: 100vw;
   height: 100vh;
-  //background-color: #2d2d2d;
-  background-color: rgba($white, 0.9);
+  background-color: rgba($white, 0.95);
   padding-top: 100px;
 }
 

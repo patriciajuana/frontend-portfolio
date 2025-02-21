@@ -23,7 +23,7 @@ const toggleMobileNav = () => {
           <DesktopNav :nav-items="headerNavItems"></DesktopNav>
         </div>
         <div class="header__burger">
-          <Burger @click="toggleMobileNav()"></Burger>
+          <Burger :active="isMobileNavActive" @click="toggleMobileNav()"></Burger>
         </div>
       </div>
       <div
@@ -100,6 +100,8 @@ $z-burger: 30;
   display: none;
 }
 .header__mobile-nav.is-active {
-  display: block;
+  @include media-breakpoint-down(lg) {
+    display: block;
+  }
 }
 </style>
